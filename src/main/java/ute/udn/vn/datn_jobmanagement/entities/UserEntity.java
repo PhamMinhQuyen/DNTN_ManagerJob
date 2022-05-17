@@ -16,6 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * Người dùng Entity
@@ -40,6 +42,9 @@ public class UserEntity implements Serializable {
     
     @Column(name = "HinhAnh")
     private String image;
+    
+    @Transient
+    private List<MultipartFile> files;
     
     @ManyToOne
     @JoinColumn(name = "VaiTro")
@@ -108,5 +113,13 @@ public class UserEntity implements Serializable {
 
     public void setCandidate(List<CandidateEntity> candidate) {
         this.candidate = candidate;
+    }
+
+    public List<MultipartFile> getFiles() {
+        return files;
+    }
+
+    public void setFiles(List<MultipartFile> files) {
+        this.files = files;
     }
 }

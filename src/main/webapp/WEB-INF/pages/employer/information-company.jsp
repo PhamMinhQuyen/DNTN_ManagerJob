@@ -77,7 +77,6 @@
                                                     <label class="form-message" style="color: red; "></label> 
                                                 </div>
                                             </div>
-                                            </br>
                                             <div class="row">
                                                 <div class="col">
                                                     <label class="form" for="scale">Số lượng nhân viên</label>
@@ -94,7 +93,6 @@
                                                     </select>
                                                     <label class="form-message" style="color: red;"></label>
                                                 </div>
-
                                                 <div class="col">
                                                     <label class="form" for="website">Website</label>
                                                     <input type="text" class="form-control input-default" value="${employer.website}" id="website"
@@ -102,7 +100,6 @@
                                                     <label class="form-message" style="color: red;"></label>
                                                 </div>
                                             </div>
-                                            </br>
                                             <div class="row">
                                                 <div class="col">
                                                     <label class="form" for="career">Lĩnh vực</label>
@@ -126,7 +123,6 @@
                                                     <label class="form-message" style="color: red; "></label> 
                                                 </div>
                                             </div>
-                                            </br>
                                             <div class="row">
                                                 <div class="col">
                                                     <label class="form" for="taxCode">Mã số thuế</label>
@@ -136,7 +132,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        </br>
                                         <button type="submit" class="btn btn-success">CẬP NHẬT</button>
                                     </mvc:form>
                                 </div>

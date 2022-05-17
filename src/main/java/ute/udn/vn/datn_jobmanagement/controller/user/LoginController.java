@@ -47,7 +47,8 @@ public class LoginController {
 
     @GetMapping("/login")
     public String showLogin(HttpSession session) {
-        session.removeAttribute("staffEntity");
+        session.removeAttribute("staffId");
+        session.removeAttribute("candidateId");
         return "user/login";
     }
 
@@ -63,9 +64,9 @@ public class LoginController {
         }
         if (userService.checkLoginCandidate(user.getEmail(), user.getPassword())) {
             CandidateEntity candidateEntity = candidateService.findCandidateByEmailUser(user.getEmail());
-            session.setAttribute("candidate", candidateEntity);
-            model.addAttribute("posts", postService.getPostsByPostDate());
-            return "user/home-user";
+            session.setMaxInactiveInterval(10000);
+            session.setAttribute("candidateId", candidateEntity.getId());
+            return "redirect:/user/home-candidate";
         }
         return "user/login";
 

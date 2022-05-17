@@ -6,6 +6,7 @@
 package ute.udn.vn.datn_jobmanagement.repository;
 
 import java.util.List;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -22,4 +23,10 @@ public interface SkillReposiitory extends CrudRepository<SkillEntity, Integer> {
             + "FROM kynang AS kn\n"
             + "WHERE kn.MaUV = ?1")
     public List<SkillEntity> findByCandidateId(int candidateId);
+    
+    @Query(nativeQuery = true, value = "SELECT *\n"
+            + "FROM kynang AS kn\n"
+            + "WHERE kn.MaUV = ?1")
+    public Optional<SkillEntity> findSkillByCandidateId(int candidateId);
+    
 }

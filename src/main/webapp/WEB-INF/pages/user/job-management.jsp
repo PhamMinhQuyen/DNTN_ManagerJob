@@ -18,7 +18,7 @@
         <link rel="stylesheet" href="<c:url value="/sidebar/css/style.css" />">
     </head>
     <body>
-        <jsp:include page="../include/employer/header-employer.jsp"/>
+       <jsp:include page="../include/user-employer-home/header-user.jsp"/>
         <section class="banner-area relative" id="home">
             <div class="overlay overlay-bg"></div>
         </section>

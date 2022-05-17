@@ -9,9 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import ute.udn.vn.datn_jobmanagement.entities.SkillEntity;
 import ute.udn.vn.datn_jobmanagement.service.CandidateService;
+import ute.udn.vn.datn_jobmanagement.service.SkillService;
 
 /**
  *
@@ -19,15 +23,25 @@ import ute.udn.vn.datn_jobmanagement.service.CandidateService;
  */
 @Controller
 @RequestMapping("/user")
-public class JobManagementController {
+public class SkillController {
     
     @Autowired
     private CandidateService candidateService;
     
-    @GetMapping("/job-management")
-    public String jobManagement(@SessionAttribute("candidateId") int candidateId,
-            Model model) {
+    @Autowired
+    private SkillService skillService;
+    
+    @GetMapping("/skill")
+    public String updateSkill(Model model, @SessionAttribute("candidateId") int candidateId) {
         model.addAttribute("candidate", candidateService.findByCandidateId(candidateId));
-        return "user/job-management";
+        model.addAttribute("skill", skillService.getSkillByCanidateId(candidateId));
+        model.addAttribute("action", "update");
+        return "user/skill";
+    }
+    
+    @PostMapping("/result-update-skill")
+    public String resultUpdateSkill(@ModelAttribute("skill") SkillEntity skillEntity) {
+        skillService.save(skillEntity);
+        return "redirect:/user/skill";
     }
 }

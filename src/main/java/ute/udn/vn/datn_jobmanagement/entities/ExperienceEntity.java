@@ -63,7 +63,7 @@ public class ExperienceEntity implements Serializable {
 
     public ExperienceEntity() {
     }
-
+    
     public int getId() {
         return id;
     }
@@ -72,6 +72,14 @@ public class ExperienceEntity implements Serializable {
         this.id = id;
     }
 
+    public String getExperience() {
+        return experience;
+    }
+
+    public void setExperience(String experience) {
+        this.experience = experience;
+    }
+    
     public String getYearNumber() {
         return yearNumber;
     }

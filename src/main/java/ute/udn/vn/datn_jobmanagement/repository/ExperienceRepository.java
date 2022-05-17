@@ -6,6 +6,7 @@
 package ute.udn.vn.datn_jobmanagement.repository;
 
 import java.util.List;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -21,5 +22,5 @@ public interface ExperienceRepository extends CrudRepository<ExperienceEntity, I
     @Query(nativeQuery = true, value = "SELECT *\n"
             + "FROM kinhnghiem AS kn\n"
             + "WHERE kn.MaUV = ?1")
-    public List<ExperienceEntity> findByCandidateId(int candidateId);
+    public Optional<ExperienceEntity> findByCandidateId(int candidateId);
 }

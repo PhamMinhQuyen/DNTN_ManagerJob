@@ -36,4 +36,12 @@ public class CandidateService {
     public CandidateEntity findCandidateByEmailUser(String email) {
          return candidateRepository.findCandidateByEmailUser(email);
     }
+    
+    public CandidateEntity findByCandidateId(int candidateId){
+        Optional<CandidateEntity> optional = candidateRepository.findById(candidateId);
+        if (optional.isPresent()) {
+            return optional.get();
+        }
+        return new CandidateEntity();
+    }
 }

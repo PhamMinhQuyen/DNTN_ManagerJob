@@ -78,9 +78,9 @@ public class PostController {
     }
 
     @GetMapping("/delete-post/{postId}")
-    public String deletePost(@PathVariable("postId") int id, @SessionAttribute("staffEntity") StaffEntity staffEntity) {
+    public String deletePost(@PathVariable("postId") int id, @SessionAttribute("staffId") int staffId) {
         postService.deletePost(id);
-        return "redirect:/employer/list-post/" + staffEntity.getId();
+        return "redirect:/employer/list-post/" + staffId;
     }
 
     @GetMapping("/update-post/{postId}")

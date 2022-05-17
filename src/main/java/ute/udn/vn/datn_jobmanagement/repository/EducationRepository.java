@@ -6,6 +6,7 @@
 package ute.udn.vn.datn_jobmanagement.repository;
 
 import java.util.List;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -21,7 +22,7 @@ public interface EducationRepository extends CrudRepository<EducationEntity, Int
     @Query(nativeQuery = true, value = "SELECT *\n"
             + "FROM hocvan AS hv\n"
             + "WHERE hv.MaUV = ?1")
-    public List<EducationEntity> findByCandidateId(int candidateId);
+    public Optional<EducationEntity> findByCandidateId(int candidateId);
 
     @Query(nativeQuery = true, value = "SELECT *\n"
             + "FROM nhanvien AS nv\n"

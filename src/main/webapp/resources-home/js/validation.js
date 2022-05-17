@@ -56,7 +56,7 @@ Validator.isEmail = function (selector) {
         selector: selector,
         test: function (value) {
             if (value == '') {
-                return 'Vui lòng nhập email';
+                return 'Vui lòng nhập vào email !';
             } else {
                 return undefined;
             }
@@ -69,7 +69,7 @@ Validator.isPassword = function (selector) {
         selector: selector,
         test: function (value) {
             if (value == '') {
-                return 'Vui lòng nhập mật khẩu';
+                return 'Vui lòng nhập vào mật khẩu !';
             } else {
                 return undefined;
             }
@@ -89,9 +89,9 @@ Validator.isPhoneNumber = function (selector) {
         test: function (value) {
             var numberPhone = /^(?:[0-9]\d*|\d)$/;
             if (value == '') {
-                return 'Vui lòng nhập số điện thoại';
+                return 'Vui lòng nhập vào số điện thoại !';
             } else if (!numberPhone.test(value) || value.length != 10) {
-                return 'Số điện thoại không hợp lệ';
+                return 'Số điện thoại không hợp lệ !';
             } else {
                 return undefined;
             }
@@ -104,7 +104,7 @@ Validator.isName = function (selector) {
         selector: selector,
         test: function (value) {
             if (value == '') {
-                return 'Vui lòng nhập tên công ty';
+                return 'Vui lòng nhập vào tên công ty !';
             } else {
                 return undefined;
             }
@@ -117,7 +117,7 @@ Validator.isScale = function (selector) {
         selector: selector,
         test: function (value) {
             if (value == '') {
-                return 'Vui lòng chọn số lượng nhân viên';
+                return 'Vui lòng chọn số lượng nhân viên !';
             } else {
                 return undefined;
             }
@@ -130,7 +130,7 @@ Validator.isWebsite = function (selector) {
         selector: selector,
         test: function (value) {
             if (value == '') {
-                return 'Vui lòng nhập website';
+                return 'Vui lòng nhập vào địa chỉ website !';
             } else {
                 return undefined;
             }
@@ -143,7 +143,7 @@ Validator.isCareer = function (selector) {
         selector: selector,
         test: function (value) {
             if (value == '') {
-                return 'Vui lòng chọn lĩnh vực';
+                return 'Vui lòng chọn lĩnh vực !';
             } else {
                 return undefined;
             }
@@ -157,7 +157,7 @@ Validator.isAddress = function (selector) {
         selector: selector,
         test: function (value) {
             if (value == '') {
-                return 'Vui lòng nhập địa chỉ';
+                return 'Vui lòng nhập vào địa chỉ !';
             } else {
                 return undefined;
             }
@@ -170,7 +170,7 @@ Validator.isTaxCode = function (selector) {
         selector: selector,
         test: function (value) {
             if (value == '') {
-                return 'Vui lòng nhập mã số thuế';
+                return 'Vui lòng nhập vào mã số thuế !';
             } else {
                 return undefined;
             }
@@ -188,7 +188,7 @@ Validator.isNameStaff = function (selector) {
         selector: selector,
         test: function (value) {
             if (value == '') {
-                return 'Vui lòng nhập họ và tên';
+                return 'Vui lòng nhập vào họ và tên !';
             } else {
                 return undefined;
             }
@@ -202,7 +202,7 @@ Validator.isGender = function (selector) {
         test: function (value) {
 
             if (value == '') {
-                return 'Vui lòng chọn giới tính';
+                return 'Vui lòng chọn giới tính !';
             } else {
                 return undefined;
             }
@@ -216,7 +216,7 @@ Validator.isBirthday = function (selector) {
         test: function (value) {
 
             if (value == '') {
-                return 'Vui lòng chọn ngày tháng năm sinh';
+                return 'Vui lòng chọn ngày tháng năm sinh !';
             } else {
                 return undefined;
             }
@@ -230,9 +230,9 @@ Validator.isCCCD = function (selector) {
         test: function (value) {
             var idCart = /^(?:[0-9]\d*|\d)$/;
             if (value == '') {
-                return 'Vui lòng nhập CCCD';
+                return 'Vui lòng nhập vào CCCD !';
             } else if (!idCart.test(value) || value.length != 12) {
-                return 'Số CCCD không hợp lệ';
+                return 'Số CCCD không hợp lệ !';
             } else {
                 return undefined;
             }
@@ -249,7 +249,7 @@ Validator.isTitle = function (selector) {
         selector: selector,
         test: function (value) {
             if (value == '') {
-                return 'Vui lòng nhập tiêu đề';
+                return 'Vui lòng nhập vào tiêu đề !';
             } else {
                 return undefined;
             }
@@ -263,7 +263,7 @@ Validator.isRank = function (selector) {
         test: function (value) {
 
             if (value == '') {
-                return 'Vui lòng chọn cấp bậc';
+                return 'Vui lòng chọn cấp bậc !';
             } else {
                 return undefined;
             }
@@ -278,7 +278,7 @@ Validator.isExperience = function (selector) {
         test: function (value) {
 
             if (value == '') {
-                return 'Vui lòng chọn kinh nghiệm';
+                return 'Vui lòng chọn kinh nghiệm !';
             } else {
                 return undefined;
             }
@@ -291,7 +291,7 @@ Validator.isQuantity= function (selector) {
         selector: selector,
         test: function (value) {
             if (value == '') {
-                return 'Vui lòng nhập số lượng cần tuyển';
+                return 'Vui lòng nhập vào số lượng cần tuyển !';
             } else {
                 return undefined;
             }
@@ -305,7 +305,7 @@ Validator.isCareers = function (selector) {
         test: function (value) {
 
             if (value == '') {
-                return 'Vui lòng chọn ngành nghề';
+                return 'Vui lòng chọn ngành nghề !';
             } else {
                 return undefined;
             }
@@ -318,7 +318,7 @@ Validator.isWage= function (selector) {
         selector: selector,
         test: function (value) {
             if (value == '') {
-                return 'Vui lòng nhập vào trường này';
+                return 'Vui lòng nhập vào trường này !';
             } else {
                 return undefined;
             }
@@ -334,7 +334,7 @@ Validator.isNewPassword = function (selector) {
         selector: selector,
         test: function (value) {
             if (value == '') {
-                return 'Vui lòng nhập mật khẩu mới';
+                return 'Vui lòng nhập vào mật khẩu mới !';
             } else {
                 return undefined;
             }
@@ -347,7 +347,7 @@ Validator.isNewPasswordConfirm = function (selector) {
         selector: selector,
         test: function (value) {
             if (value == '') {
-                return 'Vui lòng nhập lại mật khẩu mới';
+                return 'Vui lòng nhập lại mật khẩu mới !';
             } else {
                 return undefined;
             }
@@ -355,7 +355,129 @@ Validator.isNewPasswordConfirm = function (selector) {
     };
 };
 
+/**
+ * Validation trang gửi mail
+ */
+Validator.isContent = function (selector) {
+    return {
+        selector: selector,
+        test: function (value) {
+            if (value == '') {
+                return 'Vui lòng nhập vào nội dung mail !';
+            } else {
+                return undefined;
+            }
+        }
+    };
+};
 
+/**
+ * Validation cập nhật thông tin người dùng
+ */
+Validator.isMarriage = function (selector) {
+    return {
+        selector: selector,
+        test: function (value) {
 
+            if (value == '') {
+                return 'Vui lòng chọn tình trạng hôn nhân !';
+            } else {
+                return undefined;
+            }
+        }
+    };
+};
 
+Validator.isImage = function (selector) {
+    return {
+        selector: selector,
+        test: function (value) {
+            if (value == '') {
+                return 'Vui lòng chọn hình ảnh !';
+            } else {
+                return undefined;
+            }
+        }
+    };
+};
 
+/**
+ * Validation trang cập nhật học vấn 
+ */
+Validator.isDegree = function (selector) {
+    return {
+        selector: selector,
+        test: function (value) {
+            if (value == '') {
+                return 'Vui lòng chọn bằng cấp !';
+            } else {
+                return undefined;
+            }
+        }
+    };
+};
+
+Validator.isSchool = function (selector) {
+    return {
+        selector: selector,
+        test: function (value) {
+            if (value == '') {
+                return 'Vui lòng nhập vào tên trường !';
+            } else {
+                return undefined;
+            }
+        }
+    };
+};
+
+Validator.isGraduationTime = function (selector) {
+    return {
+        selector: selector,
+        test: function (value) {
+            if (value == '') {
+                return 'Vui lòng chọn thời gian tốt nghiệp !';
+            } else {
+                return undefined;
+            }
+        }
+    };
+};
+
+Validator.isForeignLanguage = function (selector) {
+    return {
+        selector: selector,
+        test: function (value) {
+            if (value == '') {
+                return 'Vui lòng chọn ngoại ngữ !';
+            } else {
+                return undefined;
+            }
+        }
+    };
+};
+
+Validator.isLevel = function (selector) {
+    return {
+        selector: selector,
+        test: function (value) {
+            if (value == '') {
+                return 'Vui lòng chọn trình độ !';
+            } else {
+                return undefined;
+            }
+        }
+    };
+};
+
+Validator.isDescription = function (selector) {
+    return {
+        selector: selector,
+        test: function (value) {
+            if (value == '') {
+                return 'Vui lòng nhập vào mô tả !';
+            } else {
+                return undefined;
+            }
+        }
+    };
+};

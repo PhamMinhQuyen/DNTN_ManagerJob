@@ -46,6 +46,9 @@ public class EducationEntity implements Serializable {
     @Column(name = "NgoaiNgu")
     private String foreignLanguage;
     
+    @Column(name = "TrinhDo")
+    private String level;
+    
     @Column(name = "MoTa")
     private String description;
     
@@ -110,5 +113,13 @@ public class EducationEntity implements Serializable {
 
     public void setCandidate(CandidateEntity candidate) {
         this.candidate = candidate;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
     }
 }

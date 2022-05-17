@@ -95,98 +95,54 @@
                                         </div>
                                     </div>
                                     </br>
-                                    <h6>MÔ TẢ CÔNG VIỆC</h6>
+                                    <h6 style="border-bottom: 1px solid #0091ce;" >MÔ TẢ CÔNG VIỆC</h6>
                                     <div class="basic-form">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <div class="inline-editor">
-                                                    <table>
-                                                        <tr>
-                                                            <td>- ${post.description}</td>
-                                                        </tr>
-
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
+                                         <p style="margin-left: 30px;"> ${post.description}</p>
+                                    </div>
+                                    <h6 style="border-bottom: 1px solid #0091ce;">QUYỀN LỢI ĐƯỢC HƯỞNG</h6>
+                                    <div class="basic-form">
+                                        <p style="margin-left: 30px;">${post.right} </p>
+                                    </div>
+                                    <h6 style="border-bottom: 1px solid #0091ce;">YÊU CẦU CÔNG VIỆC</h6>
+                                    <div class="basic-form">
+                                        <p style="margin-left: 30px;">${post.request} </p>
+                                    </div>
+                                    <h6 style="border-bottom: 1px solid #0091ce;"> THÔNG TIN LIÊN HỆ   </h6>
+                                    <div class="basic-form">
+                                          <p style="margin-left: 30px;"> ${post.contactInfo} </p>
                                     </div>
                                     </br>
-                                    <h6>QUYỀN LỢI ĐƯỢC HƯỞNG</h6>
                                     <div class="basic-form">
                                         <div class="card">
                                             <div class="card-body">
                                                 <div class="inline-editor">
-                                                    <table>
-                                                        <tr>
-                                                            <td>- ${post.right}</td>
-                                                        </tr>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </br>
-                                    <h6>YÊU CẦU CÔNG VIỆC</h6>
-                                    <div class="basic-form">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <div class="inline-editor">
-                                                    <table>
-                                                        <tr>
-                                                            <td>- ${post.request}</td>
-                                                        </tr>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        </br>
-                                        <h6>THÔNG TIN LIÊN HỆ   </h6>
-                                        <div class="basic-form">
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <div class="inline-editor">
-                                                        <table>
-                                                            <tr>
-                                                                <td>- ${post.contactInfo}</td>
-                                                            </tr>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        </br>
-                                        <div class="basic-form">
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <div class="inline-editor">
-                                                        <div class="basic-form">
-                                                            <h5>Thông tin của bạn</h5>
-                                                            <mvc:form action="${pageContext.request.contextPath}/user/result-CV/${post.id}"  method="post" modelAttribute="fileRecruitment"
-                                                                      enctype="multipart/form-data">
-                                                                <div class="form-group">
-                                                                    <table>
-                                                                         <tr>
-                                                                            <th>Email: </th>
-                                                                            <td>${candidate.user.email}</td>
-                                                                        </tr> 
-                                                                        <tr>
-                                                                            <th>Họ và tên:  </th>
-                                                                            <td>${candidate.name}</td>
-                                                                        </tr> 
-                                                                    </table>
-                                                                    <label class="form" style="font-weight: bold;">Thêm CV của bạn</label>
-                                                                    <input class="form-control form-upload" name="files" type="file"> 
-                                                                </div>
-<!--                                                                <label class="form" style="font-weight: bold;">Gửi nội dung cho nhà tuyển dụng</label>
-                                                                <div class="input-group" >
-                                                                    <textarea style="height: 100px;" class="form-control" name="content"
-                                                                              placeholder="Nhập nội dưng" ></textarea>
-                                                                </div>-->
-                                                                <div class="form-group">
-                                                                    <button type="submit" class="btn btn-success">Gửi</button>
-                                                                </div>
-                                                            </mvc:form>
-                                                        </div>
+                                                    <div class="basic-form">
+                                                        <h5>Thông tin của bạn</h5>
+                                                        <mvc:form action="${pageContext.request.contextPath}/user/result-CV/${post.id}"  method="post" modelAttribute="fileRecruitment"
+                                                                  enctype="multipart/form-data">
+                                                            <div class="form-group">
+                                                                <table>
+                                                                    <tr>
+                                                                        <th>Email: </th>
+                                                                        <td>${candidate.user.email}</td>
+                                                                    </tr> 
+                                                                    <tr>
+                                                                        <th>Họ và tên:  </th>
+                                                                        <td>${candidate.name}</td>
+                                                                    </tr> 
+                                                                </table>
+                                                                <label class="form" style="font-weight: bold;">Thêm CV của bạn</label>
+                                                                <input class="form-control form-upload" name="files" type="file"> 
+                                                            </div>
+                                                            <!--                                                                <label class="form" style="font-weight: bold;">Gửi nội dung cho nhà tuyển dụng</label>
+                                                                                                                            <div class="input-group" >
+                                                                                                                                <textarea style="height: 100px;" class="form-control" name="content"
+                                                                                                                                          placeholder="Nhập nội dưng" ></textarea>
+                                                                                                                            </div>-->
+                                                            <div class="form-group">
+                                                                <button type="submit" class="btn btn-success">Gửi</button>
+                                                            </div>
+                                                        </mvc:form>
                                                     </div>
                                                 </div>
                                             </div>
@@ -195,11 +151,12 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
-                                                            </br>
-                    <jsp:include page="../include/employer/footer.jsp"/>  
+
                 </div>
-                <jsp:include page="../include/user-employer-home/js-page.jsp"/>
-                </body>
-                </html>
+                </br>
+                <jsp:include page="../include/employer/footer.jsp"/>  
+            </div>
+            <jsp:include page="../include/user-employer-home/js-page.jsp"/>
+    </body>
+</html>

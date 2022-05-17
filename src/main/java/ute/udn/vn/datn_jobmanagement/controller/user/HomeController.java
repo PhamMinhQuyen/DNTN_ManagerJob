@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import ute.udn.vn.datn_jobmanagement.service.CandidateService;
 import ute.udn.vn.datn_jobmanagement.service.CareersService;
 import ute.udn.vn.datn_jobmanagement.service.PostService;
 
@@ -27,6 +29,9 @@ public class HomeController {
 
     @Autowired
     private CareersService careersService;
+    
+    @Autowired
+    private CandidateService candidateService;
 
     @RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
     public String welcomePage(Model model) {
@@ -36,8 +41,11 @@ public class HomeController {
     }
 
     @GetMapping("/home-candidate")
-    public String homeCandidate(Model model) {
+    public String homeCandidate(Model model, @SessionAttribute("candidateId") int candidateId) {
+        
+        model.addAttribute("candidate", candidateService.findByCandidateId(candidateId));
         model.addAttribute("posts", postService.getPostsByPostDate());
+        model.addAttribute("careerses", careersService.getCareerses());
         return "user/home-user";
     }
 

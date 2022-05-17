@@ -14,7 +14,7 @@
                             <li><a href="">Liên hệ</a></li>
                             <li><a class="ticker-btn" href="#">${candidate.name}</a>
                                 <ul>
-                                    <li><a href="<c:url value="/employer/information-company"/>">Quản lý hồ sơ</a></li>
+                                    <li><a href="<c:url value="/user/information-user"/>">Quản lý hồ sơ</a></li>
                                     <li><a href="<c:url value="/user/job-management"/>">Quản lý việc làm</a></li>
                                     <li><a href="<c:url value="/employer/change-password"/>">Đổi mật khẩu</a></li>
                                     <li><a href="<c:url value="/user/log-out"/>">Đăng xuất</a></li>
