@@ -55,7 +55,7 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <label class="form" for="password">Mật khẩu cũ</label>
-                                                    <input type="text" class="form-control input-default" id="password" name="password"
+                                                    <input type="password" class="form-control input-default" id="password" name="password"
                                                            placeholder="Nhập mật khẩu cũ">
                                                     <label class="form-message" style="color: red;"></label>
                                                     <c:if test="${message != null || message !=''}">
@@ -66,7 +66,7 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <label class="form" for="newPassword">Mật khẩu mới</label>
-                                                    <input type="text" class="form-control input-default"  id="newPassword"
+                                                    <input type="password" class="form-control input-default"  id="newPassword"
                                                            placeholder="Nhập mật khẩu mới" name="newPassword">
                                                     <label class="form-message" style="color: red;"></label>
                                                 </div>
@@ -74,7 +74,7 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <label class="form" for="newPasswordConfirm">Nhập lại mật khẩu mới</label>
-                                                    <input type="text" class="form-control input-default" 
+                                                    <input type="password" class="form-control input-default" 
                                                            placeholder="Nhập lại mật khẩu mới" name="confirmPassword" id="newPasswordConfirm">
                                                     <label class="form-message" style="color: red;"></label>
                                                 </div>

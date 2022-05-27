@@ -64,9 +64,9 @@ public class FileRecruitmentController {
         model.addAttribute("staff", staffService.findById(staffId));
         FileRecruitmentEntity file = fileRecruitmentService.findById(fileId);
         model.addAttribute("file", file);
-        model.addAttribute("educations", educationService.getEducationByCandidateId(file.getCandidate().getId()));
+        model.addAttribute("educations", educationService.getEducationsByCandidateId(file.getCandidate().getId()));
         model.addAttribute("skills", skillService.getEducationByCandidateId(file.getCandidate().getId()));
-        model.addAttribute("experiences", experienceService.findByCandidateId(file.getCandidate().getId()));
+        model.addAttribute("experiences", experienceService.findExperiencesByCandidateId(file.getCandidate().getId()));
         return "employer/detail-file-recruitment";
     }
 

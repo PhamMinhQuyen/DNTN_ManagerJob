@@ -66,4 +66,13 @@ public class FileRecruitmentService {
         }
         fileRecruitmentRepository.save(fileRecruitmentEntity);
     }
+    
+    public List<FileRecruitmentEntity> findByCandidateId(int candidateId) {
+        return fileRecruitmentRepository.findByCandidateId(candidateId);
+    }
+    
+    public boolean deleteById(int id) {
+        fileRecruitmentRepository.deleteById(id);
+        return fileRecruitmentRepository.existsById(id);
+    }
 }

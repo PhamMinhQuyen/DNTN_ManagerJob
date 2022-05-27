@@ -481,3 +481,75 @@ Validator.isDescription = function (selector) {
         }
     };
 };
+
+/**
+ * Validation trang kĩ năng chuyên môn
+ */
+Validator.isSkill = function (selector) {
+    return {
+        selector: selector,
+        test: function (value) {
+            if (value == '') {
+                return 'Vui lòng nhập vào kỹ năng !';
+            } else {
+                return undefined;
+            }
+        }
+    };
+};
+
+Validator.isDescriptionSkill = function (selector) {
+    return {
+        selector: selector,
+        test: function (value) {
+            if (value == '') {
+                return 'Vui lòng nhập vào mô tả kỹ năng !';
+            } else {
+                return undefined;
+            }
+        }
+    };
+};
+
+/**
+ * Validation trang kinh nghiệm
+ */
+Validator.isNumberYear = function (selector) {
+    return {
+        selector: selector,
+        test: function (value) {
+            if (value == '') {
+                return 'Vui lòng nhập vào số năm kinh nghiệm !';
+            } else {
+                return undefined;
+            }
+        }
+    };
+};
+
+Validator.isPosition = function (selector) {
+    return {
+        selector: selector,
+        test: function (value) {
+
+            if (value == '') {
+                return 'Vui lòng chọn chức vụ !';
+            } else {
+                return undefined;
+            }
+        }
+    };
+};
+
+Validator.isStartTime = function (selector) {
+    return {
+        selector: selector,
+        test: function (value) {
+            if (value == '') {
+                return 'Vui lòng chọn thời gian !';
+            } else {
+                return undefined;
+            }
+        }
+    };
+};

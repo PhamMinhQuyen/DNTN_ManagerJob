@@ -25,7 +25,7 @@
             <nav id="sidebar">
                 <div class="avatar">
                     <div class="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                        <img src="<c:url value="/resources/img/user/"/>${candidate.user.image}" width="100px" height="100px;"  style="margin-left: 65px;
+                        <img src="<c:url value="/resources/img/user/"/>${candidate.image}" width="100px" height="100px;"  style="margin-left: 65px;
                              margin-top: 10px; margin-bottom:10px;"/>
                     </div>
                 </div>
@@ -101,7 +101,7 @@
                                     </ul>
                                     </br>
                                     <mvc:form action="${pageContext.request.contextPath}/user/result-update-skill"  method="post" modelAttribute="skill"
-                                              id="information-company-form">
+                                              id="update-skill-form">
                                         <c:if test="${action == 'update'}">
                                             <input type="text" class="form-control" name="id"
                                                    value="${skill.id}" hidden>    
@@ -113,9 +113,9 @@
                                             </br>
                                             <div class="row">
                                                 <div class="col-12">
-                                                    <label class="form" for="name">Kỹ năng chuyên môn</label>
+                                                    <label class="form" for="skill">Kỹ năng chuyên môn</label>
                                                     <span style=color:red;>*</span>
-                                                    <input type="text" class="form-control input-default" id="name" name="name" value="${skill.name}"
+                                                    <input type="text" class="form-control input-default" id="skill" name="name" value="${skill.name}"
                                                            >
                                                     <label class="form-message" style="color: red;"></label> 
                                                 </div>
@@ -126,7 +126,7 @@
                                                     <label class="form" for="description">Mô tả kỹ năng</label>
                                                     <span style=color:red;>*</span>
                                                     <textarea style="height: 150px;" class="form-control" id="description"
-                                                              placeholder="Nhập mô tả kỹ năng" name="description" >${skill.description}"</textarea>
+                                                              placeholder="Nhập mô tả kỹ năng" name="description" >${skill.description}</textarea>
                                                     <label class="form-message" style="color: red;"></label> 
                                                 </div>
                                             </div>
@@ -155,15 +155,11 @@
         <script>
             // gọi hàm
             Validator({
-                form: '#information-company-form',
+                form: '#update-skill-form',
                 rules: [
-                    Validator.isName('#name'),
-                    Validator.isPhoneNumber('#phone'),
-                    Validator.isScale('#scale'),
-                    Validator.isWebsite('#website'),
-                    Validator.isCareer('#career'),
-                    Validator.isAddress('#address'),
-                    Validator.isTaxCode('#taxCode'),
+                    Validator.isSkill('#skill'),
+                    Validator.isDescriptionSkill('#description'),
+                   
                 ]
             })
         </script>

@@ -40,6 +40,7 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/resources-home/**").addResourceLocations("/resources-home/");
         registry.addResourceHandler("/sidebar/**").addResourceLocations("/sidebar/");
         registry.addResourceHandler("/login/**").addResourceLocations("/login/");
+        registry.addResourceHandler("/resources-admin/**").addResourceLocations("/resources-admin/");
     }
 
     @Bean(name = "multipartResolver")

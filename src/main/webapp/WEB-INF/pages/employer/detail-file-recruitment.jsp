@@ -67,7 +67,7 @@
                                                 </div>
 
                                                 <div class="inline-editor">
-                                                    <img src="<c:url value="/resources-home/img/company/"/>${staffEntity.employer.logo}" width="120px;" height="120px;"/>
+                                                    <img src="<c:url value="/resources/img/user/"/>${file.candidate.user.image}" width="120px;" height="120px;"/>
                                                     </table>
                                                 </div>
                                             </div>
@@ -86,7 +86,8 @@
                                                         </tr>
                                                         <tr>
                                                             <th>Ngày sinh:</th>
-                                                            <td style="padding-left: 12px;">${file.candidate.birthdate}</td>
+                                                            <td style="padding-left: 12px;">
+                                                                <fmt:formatDate pattern="dd/MM/yyyy" value="${file.candidate.birthdate}" /></td>
                                                         </tr>
                                                         <tr>
                                                             <th>Giới tính:</th>
@@ -121,7 +122,7 @@
                                                 <div class="inline-editor">
                                                     <table>
                                                         <tr>
-                                                            <td>- Mong muốn</td>
+                                                            
                                                         </tr>
 
                                                     </table>

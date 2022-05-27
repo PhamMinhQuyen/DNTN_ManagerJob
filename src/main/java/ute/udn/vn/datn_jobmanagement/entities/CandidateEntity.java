@@ -23,7 +23,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 import ute.udn.vn.datn_jobmanagement.enums.GenderEnum;
 
 /**
@@ -61,6 +63,12 @@ public class CandidateEntity implements Serializable {
     
     @Column(name = "HonNhan")
     private String marriage;
+    
+    @Column(name = "HinhAnh")
+    private String image;
+    
+    @Transient
+    private List<MultipartFile> files;
     
     @ManyToOne
     @JoinColumn(name = "MaND")
@@ -194,5 +202,21 @@ public class CandidateEntity implements Serializable {
 
     public void setCandidateJobs(List<CandidateJobEntity> candidateJobs) {
         this.candidateJobs = candidateJobs;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public List<MultipartFile> getFiles() {
+        return files;
+    }
+
+    public void setFiles(List<MultipartFile> files) {
+        this.files = files;
     }
 }

@@ -8,6 +8,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,6 +20,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import org.springframework.web.multipart.MultipartFile;
+import ute.udn.vn.datn_jobmanagement.enums.StatusEnum;
 
 /**
  * Người dùng Entity
@@ -40,11 +43,9 @@ public class UserEntity implements Serializable {
     @Column(name = "MatKhau")
     private String password;
     
-    @Column(name = "HinhAnh")
-    private String image;
-    
-    @Transient
-    private List<MultipartFile> files;
+    @Column(name = "TrangThai")
+    @Enumerated(EnumType.STRING)
+    private StatusEnum status;
     
     @ManyToOne
     @JoinColumn(name = "VaiTro")
@@ -83,14 +84,6 @@ public class UserEntity implements Serializable {
         this.password = password;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
     public RoleEntity getRole() {
         return role;
     }
@@ -115,11 +108,11 @@ public class UserEntity implements Serializable {
         this.candidate = candidate;
     }
 
-    public List<MultipartFile> getFiles() {
-        return files;
+    public StatusEnum getStatus() {
+        return status;
     }
 
-    public void setFiles(List<MultipartFile> files) {
-        this.files = files;
+    public void setStatus(StatusEnum status) {
+        this.status = status;
     }
 }

@@ -11,12 +11,14 @@ import java.nio.file.Paths;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 import ute.udn.vn.datn_jobmanagement.entities.CandidateEntity;
@@ -41,10 +43,15 @@ public class InformationUserController {
     private UserService userService;
 
     @GetMapping("/information-user")
-    public String updateInformationUser(Model model, @SessionAttribute("candidateId") int candidateId) {
+    public String updateInformationUser(Model model, @SessionAttribute("candidateId") int candidateId,
+            @RequestParam(value = "type", required = false) String type,
+            @RequestParam(value = "message", required = false) String message) {
         model.addAttribute("candidate", candidateService.findByCandidateId(candidateId));
         model.addAttribute("genders", GenderEnum.values());
         model.addAttribute("action", "update");
+        model.addAttribute("type", type);
+        message = MediaType.APPLICATION_JSON_VALUE + "; charset=utf-8";
+        model.addAttribute("message", message);
         return "user/information-user";
     }
 
@@ -82,9 +89,10 @@ public class InformationUserController {
                     UserEntity userEntity = new UserEntity();
                     userEntity.setId(candidateEntity.getUser().getId());
                     userEntity.setRole(roleEntity);
-                    userEntity.setImage(name);
                     userEntity.setEmail(email);
                     userEntity.setPassword(password);
+                    
+                    candidateEntity.setImage(name);
                     
                     userService.save(userEntity);
 
@@ -94,6 +102,6 @@ public class InformationUserController {
             }
         }
         candidateService.save(candidateEntity);
-        return "redirect:/user/information-user";
+        return "redirect:/user/information-user?type=success&message=Thay đổi thông tin cá nhân thành công";  
     }
 }

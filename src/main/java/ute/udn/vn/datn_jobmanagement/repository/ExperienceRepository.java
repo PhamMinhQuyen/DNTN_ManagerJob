@@ -23,4 +23,9 @@ public interface ExperienceRepository extends CrudRepository<ExperienceEntity, I
             + "FROM kinhnghiem AS kn\n"
             + "WHERE kn.MaUV = ?1")
     public Optional<ExperienceEntity> findByCandidateId(int candidateId);
+    
+    @Query(nativeQuery = true, value = "SELECT *\n"
+            + "FROM kinhnghiem AS kn\n"
+            + "WHERE kn.MaUV = ?1")
+    public List<ExperienceEntity> findExperiencesByCandidateId(int candidateId);
 }

@@ -42,9 +42,6 @@ public class LoginController {
     @Autowired
     private CandidateService candidateService;
     
-    @Autowired
-    private PostService postService;
-
     @GetMapping("/login")
     public String showLogin(HttpSession session) {
         session.removeAttribute("staffId");
@@ -58,15 +55,21 @@ public class LoginController {
         StaffEntity staffEntity = staffService.getNameByEmailUser(user.getEmail());
         if (userService.checkLogin(user.getEmail(), user.getPassword())) {
             session.setAttribute("staffId", staffEntity.getId());
-            session.setMaxInactiveInterval(10000);
+            session.setMaxInactiveInterval(100000);
             model.addAttribute("careerses", careersService.getCareerses());
             return "redirect:/employer/home";
         }
         if (userService.checkLoginCandidate(user.getEmail(), user.getPassword())) {
             CandidateEntity candidateEntity = candidateService.findCandidateByEmailUser(user.getEmail());
-            session.setMaxInactiveInterval(10000);
+            session.setMaxInactiveInterval(100000);
             session.setAttribute("candidateId", candidateEntity.getId());
             return "redirect:/user/home-candidate";
+        }
+        
+        if (user.getEmail().equals("admin@gmail.com") && user.getPassword().equals("admin")) {
+            session.setMaxInactiveInterval(100000);
+            session.setAttribute("admin", user.getEmail());
+            return "redirect:/admin/home-admin";
         }
         return "user/login";
 

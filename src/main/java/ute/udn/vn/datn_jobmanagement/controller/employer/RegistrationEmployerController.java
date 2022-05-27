@@ -22,6 +22,7 @@ import ute.udn.vn.datn_jobmanagement.entities.EmployerEntity;
 import ute.udn.vn.datn_jobmanagement.entities.RoleEntity;
 import ute.udn.vn.datn_jobmanagement.entities.StaffEntity;
 import ute.udn.vn.datn_jobmanagement.entities.UserEntity;
+import ute.udn.vn.datn_jobmanagement.enums.StatusEnum;
 import ute.udn.vn.datn_jobmanagement.service.CareersService;
 import ute.udn.vn.datn_jobmanagement.service.EmployerService;
 import ute.udn.vn.datn_jobmanagement.service.ScaleService;
@@ -72,6 +73,7 @@ public class RegistrationEmployerController {
         userEntity.setRole(roleEntity);
         userEntity.setEmail(email);
         userEntity.setPassword(password);
+        userEntity.setStatus(StatusEnum.ACTIVED);
         userService.save(userEntity);
         
         if (files != null) {

@@ -37,4 +37,8 @@ public class EducationService {
     public void save(EducationEntity educationEntity) {
         educationRepository.save(educationEntity);
     }
+    
+    public List<EducationEntity> getEducationsByCandidateId(int candidateId) {
+        return educationRepository.findEducationsByCandidateId(candidateId);
+    }
 }

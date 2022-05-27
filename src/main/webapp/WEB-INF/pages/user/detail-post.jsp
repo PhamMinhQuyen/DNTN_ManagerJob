@@ -19,7 +19,30 @@
         <link rel="stylesheet" href="<c:url value="/sidebar/css/style.css" />">
     </head>
     <body>
-        <jsp:include page="../include/user-employer-home/header-user.jsp"/>
+        <header id="header" id="home">
+            <div class="container">
+                <div class="row align-items-center justify-content-between d-flex">
+                    <div id="logo">
+                        <a href="<c:url value="/user/" />"><img src="<c:url value="/resources-home/img/logo.png" />" alt="" title="" /></a>
+                    </div>
+                    <nav id="nav-menu-container">
+                        <ul class="nav-menu">
+                            <li class="menu-active"><a href="index.html">Trang chủ</a></li>
+                            <li><a href="about-us.html">Công ty</a></li>
+                            <li><a href="category.html">Tuyển dụng</a></li>
+                            <li><a href="price.html">Liên hệ</a></li>
+                            <li><a class="ticker-btn sf-with-ul" href="#">Đăng ký</a>
+                                <ul>
+                                    <li><a href="<c:url value="/user/registration-candidate" />">Ứng viên</a></li>
+                                    <li><a href="<c:url value="/employer/registration-employer" />">Nhà tuyển dụng</a></li>
+                                </ul>
+                            </li>
+                            <li><a class="ticker-btn" href="<c:url value="/user/login"/>">Đăng nhập</a></li>				          				          
+                        </ul>
+                    </nav>	    		
+                </div>
+            </div>
+        </header>
         <section class="banner-area relative" id="home">
             <div class="overlay overlay-bg"></div>
         </section>
@@ -34,30 +57,19 @@
                                     <div class="basic-form">
                                         <div class="card">
                                             <div class="card-body">
-                                                <div class="inline-editor" style="float: right; margin-right: 390px;" >
-                                                    <table>
-                                                        <tr>
-                                                            <th><h4 style="color: #2980b9;">${post.name}</h4></th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th><h5>${post.staff.employer.name}</h5></th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Địa diểm tuyển dụng: </th>
-                                                            <td>${post.staff.employer.address}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Ngành nghề:</th>
-                                                            <td>${post.staff.employer.career}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Ngày đăng:</th>
-                                                            <td><fmt:formatDate pattern="dd/MM/yyyy" value="${post.postDate}" /></td>
-                                                        </tr>
-                                                    </table>
+                                                <div class="inline-editor" style="float: right; margin-right: 380px;" >
+                                                    <h4 style="color: #2980b9;">${post.name}</h4>
+                                                    <h5>${post.staff.employer.name}</h5>
+                                                    <span>Địa Điểm Tuyển Dụng: ${post.staff.employer.address}</span>
+                                                    </br>
+                                                    <span>Ngành Nghề: ${post.staff.employer.career}</span>
+                                                     </br>
+                                                    <span>Ngày Đăng: <fmt:formatDate pattern="dd/MM/yyyy" value="${post.postDate}" /></span>
                                                 </div>
                                                 <div class="inline-editor">
-                                                    <img src="<c:url value="/resources-home/img/company/"/>${post.staff.employer.logo}" width="120px;" height="140px;"/>
+                                                    <img src="<c:url value="/resources-home/img/company/"/>${post.staff.employer.logo}" width="120px;" height="140px;"
+                                                         style="border: 2px solid #ced4da;" />
+                                                             
                                                     </table>
                                                 </div>
                                             </div>
@@ -112,42 +124,7 @@
                                           <p style="margin-left: 30px;"> ${post.contactInfo} </p>
                                     </div>
                                     </br>
-                                    <div class="basic-form">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <div class="inline-editor">
-                                                    <div class="basic-form">
-                                                        <h5>Thông tin của bạn</h5>
-                                                        <mvc:form action="${pageContext.request.contextPath}/user/result-CV/${post.id}"  method="post" modelAttribute="fileRecruitment"
-                                                                  enctype="multipart/form-data">
-                                                            <div class="form-group">
-                                                                <table>
-                                                                    <tr>
-                                                                        <th>Email: </th>
-                                                                        <td>${candidate.user.email}</td>
-                                                                    </tr> 
-                                                                    <tr>
-                                                                        <th>Họ và tên:  </th>
-                                                                        <td>${candidate.name}</td>
-                                                                    </tr> 
-                                                                </table>
-                                                                <label class="form" style="font-weight: bold;">Thêm CV của bạn</label>
-                                                                <input class="form-control form-upload" name="files" type="file"> 
-                                                            </div>
-                                                            <!--                                                                <label class="form" style="font-weight: bold;">Gửi nội dung cho nhà tuyển dụng</label>
-                                                                                                                            <div class="input-group" >
-                                                                                                                                <textarea style="height: 100px;" class="form-control" name="content"
-                                                                                                                                          placeholder="Nhập nội dưng" ></textarea>
-                                                                                                                            </div>-->
-                                                            <div class="form-group">
-                                                                <button type="submit" class="btn btn-success">Gửi</button>
-                                                            </div>
-                                                        </mvc:form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <button onclick="location.href = '<c:url value="/user/login"/>'" type="button" class="btn btn-success">Ứng tuyển ngay</button>
                                 </div>
                             </div>
                         </div>

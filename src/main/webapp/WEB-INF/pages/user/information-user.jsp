@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="mvc" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
@@ -25,7 +25,7 @@
             <nav id="sidebar">
                 <div class="avatar">
                     <div class="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                        <img src="<c:url value="/resources/img/user/"/>${candidate.user.image}" width="100px" height="100px;"  style="margin-left: 65px;
+                        <img src="<c:url value="/resources/img/user/"/>${candidate.image}" width="100px" height="100px;"  style="margin-left: 65px;
                              margin-top: 10px; margin-bottom:10px;"/>
                     </div>
                 </div>
@@ -110,6 +110,11 @@
                                                    value="${candidate.user.id}" hidden>
 
                                         </c:if>
+                                             <c:if test="${message != null || message !=''}">
+                                            <div class="alert alert-${type}">
+                                                ${message}
+                                            </div>
+                                        </c:if>
                                         <h5>THÔNG TIN CÁ NHÂN</h5>
                                         <div class="basic-form">
                                             <div class="card">
@@ -117,12 +122,12 @@
                                                     <div class="inline-editor" style="float: right; margin-right: 600px;" >
                                                         <P>Upload hình đại diện cá nhân!</P>
                                                         <input class="form-control form-upload" name="files" type="file" id="image"> 
-                                                        <c:if test="${candidate.user.image == null}">
+                                                        <c:if test="${candidate.image == null}">
                                                             <label class="form-message" style="color: red;"></label> 
                                                         </c:if>
                                                     </div>
                                                     <div class="inline-editor">
-                                                        <img src="<c:url value="/resources/img/user/"/>${candidate.user.image}" width="120px;" height="110px;" style="border: 2px solid 
+                                                        <img src="<c:url value="/resources/img/user/"/>${candidate.image}" width="120px;" height="110px;" style="border: 2px solid 
                                                              #ced4da; " />
                                                     </div>
                                                 </div>
@@ -223,6 +228,10 @@
                                                     <input type="text" class="form-control"  value="${candidate.user.email}" name="emailUser" hidden
                                                            > 
                                                 </div>
+                                                <div class="col">
+                                                    <input type="text" class="form-control"  value="${candidate.image}" name="image" hidden
+                                                           > 
+                                                </div>
                                             </div>
 
                                         </div>
@@ -250,7 +259,7 @@
                     Validator.isPhoneNumber('#phoneNumber'),
                     Validator.isGender('#gender'),
                     Validator.isBirthday('#birthday'),
-                     Validator.isMarriage('#marriage'),
+                    Validator.isMarriage('#marriage'),
                     Validator.isCCCD('#CCCD'),
                     Validator.isImage('#image'),
                 ]

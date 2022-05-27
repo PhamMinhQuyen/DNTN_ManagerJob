@@ -36,4 +36,9 @@ public interface EducationRepository extends CrudRepository<EducationEntity, Int
             + "ON uv.MaUV = hv.MaUV\n"
             + "WHERE nv.MaNV = 1")
     public List<EducationEntity> findByStaffId(int staffId);
+    
+    @Query(nativeQuery = true, value = "SELECT *\n"
+            + "FROM hocvan AS hv\n"
+            + "WHERE hv.MaUV = ?1")
+    public List<EducationEntity> findEducationsByCandidateId(int candidateId);
 }

@@ -5,6 +5,7 @@
  */
 package ute.udn.vn.datn_jobmanagement.service;
 
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -63,5 +64,9 @@ public class UserService {
             return true;
         }
         return false;
+    }
+    
+    public List<UserEntity> getUsers() {
+        return (List<UserEntity>) userRepository.findAll();
     }
 }

@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import ute.udn.vn.datn_jobmanagement.entities.CandidateEntity;
 import ute.udn.vn.datn_jobmanagement.entities.FileRecruitmentEntity;
 import ute.udn.vn.datn_jobmanagement.entities.PostEntity;
+import ute.udn.vn.datn_jobmanagement.service.CandidateService;
 import ute.udn.vn.datn_jobmanagement.service.FileRecruitmentService;
 import ute.udn.vn.datn_jobmanagement.service.PostService;
 
@@ -39,6 +40,20 @@ public class DetailPostController {
     
     @Autowired
     private FileRecruitmentService fileRecruitmentService;
+    
+    @Autowired
+    private CandidateService candidateService;
+    
+    @GetMapping("/detail-post-user/{postId}")
+    public String detailPostUser(@PathVariable("postId") int postId,
+            @SessionAttribute("candidateId") int candidateId,
+            Model model) {
+        model.addAttribute("post", postService.findById(postId));
+        model.addAttribute("candidate", candidateService.findByCandidateId(candidateId));
+        return "user/detail-post-user";
+    }
+    
+    
 
     @GetMapping("/detail-post/{postId}")
     public String detailPost(@PathVariable("postId") int postId,

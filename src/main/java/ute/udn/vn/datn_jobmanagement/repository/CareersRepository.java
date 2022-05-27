@@ -5,6 +5,7 @@
  */
 package ute.udn.vn.datn_jobmanagement.repository;
 
+import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import ute.udn.vn.datn_jobmanagement.entities.CareersEntity;
@@ -16,4 +17,5 @@ import ute.udn.vn.datn_jobmanagement.entities.CareersEntity;
 @Repository
 public interface CareersRepository extends CrudRepository<CareersEntity, Integer> {
     
+    public List<CareersEntity> findByNameContaining(String name);
 }

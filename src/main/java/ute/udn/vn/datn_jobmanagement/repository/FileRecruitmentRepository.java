@@ -34,4 +34,9 @@ public interface FileRecruitmentRepository extends CrudRepository<FileRecruitmen
             + "ON hsut.MaUV = uv.MaUV\n"
             + "WHERE hsut.MaHS = ?1")
     public Optional<FileRecruitmentEntity> findByProfileCodeId(int id);
+
+    @Query(nativeQuery = true, value = "SELECT * \n"
+            + "FROM hosoungtuyen as hsut\n"
+            + "WHERE hsut.MaUV = ?1")
+    public List<FileRecruitmentEntity> findByCandidateId(int candidateId);
 }

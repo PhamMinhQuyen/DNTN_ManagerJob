@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ute.udn.vn.datn_jobmanagement.entities.CandidateEntity;
 import ute.udn.vn.datn_jobmanagement.entities.RoleEntity;
 import ute.udn.vn.datn_jobmanagement.entities.UserEntity;
+import ute.udn.vn.datn_jobmanagement.enums.StatusEnum;
 import ute.udn.vn.datn_jobmanagement.service.CandidateService;
 import ute.udn.vn.datn_jobmanagement.service.UserService;
 
@@ -47,6 +48,7 @@ public class RegistrationCandidateController {
         userEntity.setRole(roleEntity);
         userEntity.setEmail(email);
         userEntity.setPassword(password);
+        userEntity.setStatus(StatusEnum.ACTIVED);
         userService.save(userEntity);
         
         candidateEntity.setUser(userEntity);

@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -23,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import ute.udn.vn.datn_jobmanagement.entities.EmployerEntity;
 import ute.udn.vn.datn_jobmanagement.service.CareersService;
 import ute.udn.vn.datn_jobmanagement.service.EmployerService;
+import ute.udn.vn.datn_jobmanagement.service.PostService;
 import ute.udn.vn.datn_jobmanagement.service.ScaleService;
 import ute.udn.vn.datn_jobmanagement.service.StaffService;
 
@@ -45,6 +47,9 @@ public class EmployerController {
 
     @Autowired
     private StaffService staffService;
+    
+    @Autowired
+    private PostService postService;
     
     @GetMapping("/information-company")
     public String informationCompany(Model model, @SessionAttribute("staffId") int staffId) {
@@ -88,5 +93,12 @@ public class EmployerController {
         }
         employerService.save(employerEntity);
         return "redirect:/employer/information-company";
+    }
+    
+    @GetMapping("detail-employer/{employerId}")
+    public String detailEmployer(Model model, @PathVariable("employerId") int employerId) {
+        model.addAttribute("employer", employerService.findById(employerId));
+        model.addAttribute("posts", postService.findByEmployerId(employerId));
+        return "employer/detail-employer";
     }
 }

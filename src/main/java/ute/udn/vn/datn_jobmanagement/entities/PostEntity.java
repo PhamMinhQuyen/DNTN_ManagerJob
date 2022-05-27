@@ -76,7 +76,7 @@ public class PostEntity implements Serializable {
     
     @ManyToOne
     @JoinColumn(name = "MaCapBac")
-    private RankEntity rank;
+    private RankEntity rank; 
     
     @ManyToOne
     @JoinColumn(name = "MaNganhNghe")

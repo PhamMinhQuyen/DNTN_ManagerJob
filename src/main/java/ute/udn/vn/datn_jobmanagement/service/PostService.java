@@ -66,4 +66,16 @@ public class PostService {
     public List<PostEntity> getPostsByPostDate() {
         return postRepository.findByPostDate_OrderByDesc();
     }
+    
+    public Page<PostEntity> getPostsPage(Pageable pageable) {
+        return postRepository.findAll(pageable);
+    }
+    
+    public List<PostEntity> findByEmployerId(int employerId) {
+        return postRepository.findByEmployerId(employerId);
+    }
+    
+    public Page<PostEntity> searchByName(int careersId, String name, String company, Pageable pageable) {
+        return postRepository.findByCareers_IdAndNameContainingAndStaff_Employer_NameContaining(careersId, name, company, pageable);
+    }
 }

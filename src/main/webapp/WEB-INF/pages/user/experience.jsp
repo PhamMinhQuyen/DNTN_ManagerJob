@@ -25,7 +25,7 @@
             <nav id="sidebar">
                 <div class="avatar">
                     <div class="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                        <img src="<c:url value="/resources/img/user/"/>${candidate.user.image}" width="100px" height="100px;"  style="margin-left: 65px;
+                        <img src="<c:url value="/resources/img/user/"/>${candidate.image}" width="100px" height="100px;"  style="margin-left: 65px;
                              margin-top: 10px; margin-bottom:10px;"/>
                     </div>
                 </div>
@@ -101,7 +101,7 @@
                                     </ul>
                                     </br>
                                     <mvc:form action="${pageContext.request.contextPath}/user/result-update-experience"  method="post" modelAttribute="experience"
-                                              >
+                                              id="update-experience-form"   >
                                         <c:if test="${action == 'update'}">
                                             <input type="text" class="form-control" name="id"
                                                    value="${experience.id}" hidden>    
@@ -124,10 +124,10 @@
                                                             <option >Chưa có kinh nghiệm</option>
                                                         </c:if>
                                                         <c:if test="${experience.experience == 'Có kinh nghiệm'}">
-                                                            <option selected>Chưa có kinh nghiệm</option>
+                                                            <option selected>Có kinh nghiệm</option>
                                                         </c:if>
                                                         <c:if test="${experience.experience != 'Có kinh nghiệm'}">
-                                                            <option >Chưa có kinh nghiệm</option>
+                                                            <option >Có kinh nghiệm</option>
                                                         </c:if>
                                                     </select>
                                                     <label class="form-message" style="color: red;"></label> 
@@ -135,7 +135,7 @@
                                                 <div class="col">
                                                     <label class="form" for="numberYear">Số năm</label>
                                                     <span style=color:red;>*</span>
-                                                    <input type="number" class="form-control input-default" id="numberYear" name="yearNumber" value="${experience.yearNumber}"
+                                                    <input type="number" min="0" class="form-control input-default" id="numberYear" name="yearNumber" value="${experience.yearNumber}"
                                                            >
                                                     <label class="form-message" style="color: red; "></label> 
                                                 </div>
@@ -179,9 +179,9 @@
                                                 <div class="col">
                                                     <label class="form" for="endTime">Thời gian kết thúc</label>
                                                     <span style=color:red;>*</span>
-                                                    <input type="date" class="form-control" name="endTime" value="${experience.endTime}"
+                                                    <input onchange = "handleChange()" type="date" class="form-control" name="endTime" value="${experience.endTime}"
                                                            id="endTime"> 
-                                                    <label class="form-message" style="color: red; "></label> 
+                                                    <label id="validationEndTime" class="form-message" style="color: red; "></label> 
                                                 </div>
                                             </div>
 
@@ -200,7 +200,6 @@
                                                            id="endTime">
                                                 </div>
                                             </div>
-
                                         </div>
                                         <button type="submit" class="btn btn-info">CẬP NHẬT</button>
                                     </mvc:form>
@@ -219,17 +218,32 @@
         <script>
             // gọi hàm
             Validator({
-                form: '#information-user-form',
+                form: '#update-experience-form',
                 rules: [
-                    Validator.isName('#name'),
-                    Validator.isPhoneNumber('#phone'),
-                    Validator.isScale('#scale'),
-                    Validator.isWebsite('#website'),
-                    Validator.isCareer('#career'),
-                    Validator.isAddress('#address'),
-                    Validator.isTaxCode('#taxCode'),
+                    Validator.isExperience('#experience'),
+                    Validator.isName('#nameCity'),
+                    Validator.isNumberYear('#numberYear'),
+                    Validator.isPosition('#position'),
+                    Validator.isStartTime('#startTime'),
+                    Validator.isStartTime('#endTime'),
+                    Validator.isDescription('#jobDescription'),
+                    
                 ]
-            })
+            });
+            
+           const getbyId = (id) => document.querySelector(id);
+           const check = () => {
+              return getbyId('#startTime').value < getbyId('#endTime').value;
+           }
+           
+           const handleChange = () => {
+               if (!check()) {
+                   getbyId('#validationEndTime').textContent = 'Thời gian kết thúc lớn hơn thời gian bắt đầu'
+               } else {
+                   getbyId('#validationEndTime').textContent = ''
+               }
+           }
+           
         </script>
     </body>
 </html>

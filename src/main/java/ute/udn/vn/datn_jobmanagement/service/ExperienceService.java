@@ -33,4 +33,8 @@ public class ExperienceService {
     public void save(ExperienceEntity experienceEntity) {
         experienceRepository.save(experienceEntity);
     }
+    
+    public List<ExperienceEntity> findExperiencesByCandidateId(int candidateId) {
+        return experienceRepository.findExperiencesByCandidateId(candidateId);
+    }
 }

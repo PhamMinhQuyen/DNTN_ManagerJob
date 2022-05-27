@@ -47,74 +47,93 @@
             <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
                 <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
                     <mvc:form class="login100-form validate-form" action="${pageContext.request.contextPath}/employer/resultRegistration" 
-                              method="post" modelAttribute="employer" enctype="multipart/form-data">
+                              method="post" modelAttribute="employer" enctype="multipart/form-data"
+                              id="registration-employer-form">
                         <span class="login100-form-title p-b-49">
                             ĐĂNG KÝ
                         </span>
                         <div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
-                            <span class="label-input100">Email</span>
-                            <input class="input100" type="email" name="email" placeholder="Nhập vào địa chỉ email">
+                            <label class="label-input100" for="email">Email</label>
+                            <input class="input100" type="email" name="email" placeholder="Nhập vào địa chỉ email"
+                                   id="email">
                             <span class="focus-input100" data-symbol="&#xf206;"></span>
+                            <label class="form-message" style="color: red; "></label> 
                         </div>
                         <div class="wrap-input100 validate-input" data-validate="Password is required">
-                            <span class="label-input100">Mật khẩu</span>
-                            <input class="input100" type="password" name="password" placeholder="Nhập vào mật khẩu">
+                            <label class="label-input100" for="password">Mật khẩu</label>
+                            <input class="input100" type="password" name="password" placeholder="Nhập vào mật khẩu"
+                                   id="password">
                             <span class="focus-input100" data-symbol="&#xf190;"></span>
+                            <label class="form-message" style="color: red; "></label> 
                         </div>
                         </br>
                         <div class="wrap-input100 validate-input m-b-23" >
-                            <span class="label-input100">Họ và tên</span>
-                            <input class="input100" type="text" name="nameStaff" placeholder="Nhập vào họ và tên">
+                            <label class="label-input100" for="nameStaff">Họ và tên</label>
+                            <input class="input100" type="text" name="nameStaff" placeholder="Nhập vào họ và tên"
+                                   id="nameStaff">
                             <span class="focus-input100" data-symbol="&#xf206;"></span>
+                            <label class="form-message" style="color: red; "></label> 
                         </div>
                         <div class="wrap-input100 validate-input m-b-23" >
-                            <span class="label-input100">Tên công ty</span>
-                            <input class="input100" type="text" name="name" placeholder="Nhập vào tên công ty">
+                            <label class="label-input100" for="nameCompany">Tên công ty</label>
+                            <input class="input100" type="text" name="name" placeholder="Nhập vào tên công ty"
+                                   id="nameCompany">
                             <span class="focus-input100" data-symbol="&#xf206;"></span>
+                            <label class="form-message" style="color: red; "></label> 
                         </div>
                            
                         <div class="wrap-input100 validate-input m-b-23" >
-                            <span class="label-input100">Số điện thoại công ty</span>
-                            <input class="input100" type="text" name="phoneNumber" placeholder="Nhập vào số điện thoại công ty">
+                            <label class="label-input100" for="phoneNumber">Số điện thoại công ty</label>
+                            <input class="input100" type="text" name="phoneNumber" placeholder="Nhập vào số điện thoại công ty"
+                                   id="phoneNumber">
                             <span class="focus-input100" data-symbol="&#xf206;"></span>
+                            <label class="form-message" style="color: red; "></label> 
                         </div>
                         
                         <div class="wrap-input100 validate-input m-b-23" >
-                            <span class="label-input100">Lĩnh vực kinh doanh</span>
-                            <select class="input100" name="career">
+                            <label class="label-input100" for="career">Lĩnh vực kinh doanh</label>
+                            <select class="input100" name="career" id="career">
+                                <option></option>
                                 <c:forEach var="careers" items="${careerses}">
                                     <option value="${careers.name}">${careers.name}</option>
                                 </c:forEach>
                             </select>
                             <span class="focus-input100" data-symbol="&#xf206;"></span>
+                            <label class="form-message" style="color: red; "></label> 
                         </div>
                         
                         <div class="wrap-input100 validate-input m-b-23" >
-                            <span class="label-input100">LOGO công ty</span>
-                            <input type="file" name="files">
-                            <span class="focus-input100" data-symbol="&#xf206;"></span>
+                            <label class="label-input100" for="logo">LOGO công ty</label>
+                            <input type="file" name="files" id="logo">
+                            <label class="form-message" style="color: red; "></label> 
                         </div>
                         
                         <div class="wrap-input100 validate-input m-b-23" >
-                            <span class="label-input100">Quy mô công ty </span>
-                            <select class="input100" name="scale">
+                            <label class="label-input100" for="scale" >Quy mô công ty </label>
+                            <select class="input100" name="scale" id="scale">
+                                <option></option>
                                 <c:forEach var="scale" items="${scales}">
                                     <option value="${scale.name}">${scale.name}</option>
                                 </c:forEach>
                             </select>
                             <span class="focus-input100" data-symbol="&#xf206;"></span>
+                            <label class="form-message" style="color: red; "></label> 
                         </div>
                         
                          <div class="wrap-input100 validate-input m-b-23" >
-                            <span class="label-input100">Địa chỉ công ty</span>
-                            <input class="input100" type="text" name="address" placeholder="Nhập vào địa chỉ công ty">
+                             <label class="label-input100" for="address">Địa chỉ công ty</label>
+                            <input class="input100" type="text" name="address" placeholder="Nhập vào địa chỉ công ty"
+                                   id="address">
                             <span class="focus-input100" data-symbol="&#xf206;"></span>
+                            <label class="form-message" style="color: red; "></label> 
                         </div>
                         
                          <div class="wrap-input100 validate-input m-b-23" >
-                            <span class="label-input100">Mã số thế/ Đăng ký kinh doanh</span>
-                            <input class="input100" type="text" name="taxCode" placeholder="Nhập vào mã số thuế">
+                             <label class="label-input100" for="taxCode">Mã số thế/ Đăng ký kinh doanh</label>
+                            <input class="input100" type="text" name="taxCode" placeholder="Nhập vào mã số thuế"
+                                   id="taxCode">
                             <span class="focus-input100" data-symbol="&#xf206;"></span>
+                            <label class="form-message" style="color: red; "></label> 
                         </div>
                         
                         <div class="container-login100-form-btn">
@@ -155,6 +174,26 @@
 
         <jsp:include page="../include/employer/footer.jsp"/>
         <jsp:include page="../include/user-employer-home/js-page.jsp"/>
+        
+        <script src="${pageContext.request.contextPath}/resources-home/js/validation.js"></script>
+         <script>
+            // gọi hàm
+            Validator({
+                form: '#registration-employer-form',
+                rules: [
+                    Validator.isEmail('#email'),
+                    Validator.isPassword('#password'),
+                    Validator.isNameStaff('#nameStaff'),
+                    Validator.isName('#nameCompany'), 
+                    Validator.isPhoneNumber('#phoneNumber'),
+                    Validator.isCareer('#career'),
+                    Validator.isImage('#logo'),
+                    Validator.isAddress('#address'),
+                    Validator.isTaxCode('#taxCode'),
+                    Validator.isScale('#scale'),
+                ]
+            });
+          </script>  
 
     </body>
 </html>
