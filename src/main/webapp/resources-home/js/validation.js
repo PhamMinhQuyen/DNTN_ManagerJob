@@ -211,12 +211,25 @@ Validator.isGender = function (selector) {
 };
 
 Validator.isBirthday = function (selector) {
+
+    function addLeadingZeros(n) {
+        if (n <= 9) {
+            return "0" + n;
+        }
+        return n
+    }
+
     return {
         selector: selector,
         test: function (value) {
+            var getbyId = (id) => document.querySelector(id);
+            let currentDatetime = new Date()
+            let formattedDate = currentDatetime.getFullYear() + "-" + addLeadingZeros(currentDatetime.getMonth() + 1) + "-" + addLeadingZeros(currentDatetime.getDate());
 
-            if (value == '') {
+            if (value === '') {
                 return 'Vui lòng chọn ngày tháng năm sinh !';
+            } else if (getbyId('#birthday').value > formattedDate) {
+                return 'Ngày tháng năm sinh không lớn hơn ngày tháng năm hiện tại!';
             } else {
                 return undefined;
             }
@@ -241,7 +254,7 @@ Validator.isCCCD = function (selector) {
     }
 };
 
-/**
+/** 
  * Validation trang thêm mới tin tuyển dụng
  */
 Validator.isTitle = function (selector) {
@@ -286,7 +299,7 @@ Validator.isExperience = function (selector) {
     };
 };
 
-Validator.isQuantity= function (selector) {
+Validator.isQuantity = function (selector) {
     return {
         selector: selector,
         test: function (value) {
@@ -313,7 +326,7 @@ Validator.isCareers = function (selector) {
     };
 };
 
-Validator.isWage= function (selector) {
+Validator.isWage = function (selector) {
     return {
         selector: selector,
         test: function (value) {
@@ -545,8 +558,111 @@ Validator.isStartTime = function (selector) {
     return {
         selector: selector,
         test: function (value) {
+            var getbyId = (id) => document.querySelector(id);
             if (value == '') {
                 return 'Vui lòng chọn thời gian !';
+            } else if (getbyId('#startTime').value > getbyId('#endTime').value) {
+                return 'Vui lòng chọn ngày bắt đầu nhỏ hơn ngày kết thúc'
+            } else {
+                return undefined;
+            }
+        }
+    };
+};
+
+Validator.isEndTime = function (selector) {
+
+    return {
+        selector: selector,
+        test: function (value) {
+            var getbyId = (id) => document.querySelector(id);
+            if (value === '') {
+                return 'Vui lòng chọn thời gian !';
+            } else if (getbyId('#startTime').value > getbyId('#endTime').value) {
+                return 'Vui lòng chọn ngày kết thúc lớn hơn ngày bắt đầu'
+            } else {
+                return undefined;
+            }
+        }
+    };
+};
+
+
+/**
+ * Validation trang thông tin công việc
+ * 
+ */
+Validator.isAppliedPosition = function (selector) {
+    return {
+        selector: selector,
+        test: function (value) {
+            if (value == '') {
+                return 'Vui lòng nhập vào vị trí muốn ứng tuyển !';
+            } else {
+                return undefined;
+            }
+        }
+    };
+};
+
+Validator.isSalaryMin = function (selector) {
+    return {
+        selector: selector,
+        test: function (value) {
+            if (value == '') {
+                return 'Vui lòng nhập vào mức lương tối thiểu !';
+            } else {
+                return undefined;
+            }
+        }
+    };
+};
+
+Validator.isSalaryMax = function (selector) {
+    return {
+        selector: selector,
+        test: function (value) {
+            if (value == '') {
+                return 'Vui lòng nhập vào mức lương tối đa !';
+            } else {
+                return undefined;
+            }
+        }
+    };
+};
+
+Validator.isFormOfWorking = function (selector) {
+    return {
+        selector: selector,
+        test: function (value) {
+            if (value == '') {
+                return 'Vui lòng chọn hình thức làm việc !';
+            } else {
+                return undefined;
+            }
+        }
+    };
+};
+
+Validator.isTarget = function (selector) {
+    return {
+        selector: selector,
+        test: function (value) {
+            if (value == '') {
+                return 'Vui lòng nhập vào mục tiêu nghề nghiệp !';
+            } else {
+                return undefined;
+            }
+        }
+    };
+};
+
+Validator.isCV = function (selector) {
+    return {
+        selector: selector,
+        test: function (value) {
+            if (value == '') {
+                return 'Vui lòng thêm vào CV của bạn !';
             } else {
                 return undefined;
             }

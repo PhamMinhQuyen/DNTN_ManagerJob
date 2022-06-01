@@ -21,8 +21,7 @@ import ute.udn.vn.datn_jobmanagement.entities.PostEntity;
 @Repository
 public interface PostRepository extends CrudRepository<PostEntity, Integer> {
 
-    @Query("SELECT p FROM PostEntity p WHERE p.staff.id = ?1")
-    public List<PostEntity> findByStaffId(int staffId);
+    public Page<PostEntity> findByStaff_IdOrderByPostDateDesc(int staffId, Pageable pageable);
 
     @Query("SELECT p FROM PostEntity p ORDER BY postDate DESC")
     public List<PostEntity> findByPostDate_OrderByDesc();
@@ -41,4 +40,6 @@ public interface PostRepository extends CrudRepository<PostEntity, Integer> {
     
     public Page<PostEntity> findByCareers_IdAndNameContainingAndStaff_Employer_NameContaining(int careersId, String name, 
             String company, Pageable pageable);
+    
+    public Page<PostEntity> findByNameContainingAndStaff_Id(String name, int staffId, Pageable pageable);
 }

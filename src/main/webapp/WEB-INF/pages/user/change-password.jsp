@@ -38,7 +38,11 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h3>THAY ĐỔI MẬT KHẨU</h3>
-                                    </br>
+                                     <c:if test="${message != null || message !=''}">
+                                        <div class="alert alert-${type}">
+                                            ${message}
+                                        </div>
+                                    </c:if>
                                     <div class="basic-form">
                                         <mvc:form action="${pageContext.request.contextPath}/user/result-change-password-user"  method="post" modelAttribute="user"
                                                   id="change-password-form">
@@ -49,6 +53,8 @@
                                                        value="${candidate.user.role.id}" >
                                                 <input type="text" class="form-control" name="email" hidden
                                                        value="${candidate.user.email}" >
+                                                <input type="text" class="form-control" name="status" hidden
+                                                       value="${candidate.user.status}" >
                                             </c:if>
 
                                             <div class="row">

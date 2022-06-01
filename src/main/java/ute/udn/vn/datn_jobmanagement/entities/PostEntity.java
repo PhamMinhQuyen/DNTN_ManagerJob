@@ -11,6 +11,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,9 +23,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.multipart.MultipartFile;
+import ute.udn.vn.datn_jobmanagement.enums.WorkingFormEnum;
 
 /**
  *
@@ -57,6 +58,10 @@ public class PostEntity implements Serializable {
 
     @Column(name = "GioiTinh")
     private String gender;
+    
+    @Column(name = "HinhThucLamViec")
+    @Enumerated(EnumType.STRING)
+    private WorkingFormEnum workingFormEnum;
     
     @Column(name = "MoTaCV")
     private String description;
@@ -206,5 +211,13 @@ public class PostEntity implements Serializable {
 
     public void setFileRecruitments(List<FileRecruitmentEntity> fileRecruitments) {
         this.fileRecruitments = fileRecruitments;
+    }
+
+    public WorkingFormEnum getWorkingFormEnum() {
+        return workingFormEnum;
+    }
+
+    public void setWorkingFormEnum(WorkingFormEnum workingFormEnum) {
+        this.workingFormEnum = workingFormEnum;
     }
 }

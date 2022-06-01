@@ -42,8 +42,8 @@ public class PostService {
         postRepository.save(postEntity);
     }
     
-    public List<PostEntity> showPostByStaffId(int staffId) {
-        return postRepository.findByStaffId(staffId);
+    public Page<PostEntity> showPostByStaffId(int staffId, Pageable pageable) {
+        return postRepository.findByStaff_IdOrderByPostDateDesc(staffId, pageable);
     }
     
     public boolean deletePost(int id) {
@@ -77,5 +77,9 @@ public class PostService {
     
     public Page<PostEntity> searchByName(int careersId, String name, String company, Pageable pageable) {
         return postRepository.findByCareers_IdAndNameContainingAndStaff_Employer_NameContaining(careersId, name, company, pageable);
+    }
+    
+    public Page<PostEntity> searchByName(String name, int staffId, Pageable pageable) {
+        return postRepository.findByNameContainingAndStaff_Id(name, staffId, pageable);
     }
 }

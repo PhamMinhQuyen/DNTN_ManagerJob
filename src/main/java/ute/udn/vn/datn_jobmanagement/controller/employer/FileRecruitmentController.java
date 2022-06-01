@@ -5,7 +5,10 @@
  */
 package ute.udn.vn.datn_jobmanagement.controller.employer;
 
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import ute.udn.vn.datn_jobmanagement.entities.FileRecruitmentEntity;
 import ute.udn.vn.datn_jobmanagement.entities.UserEntity;
@@ -51,8 +55,9 @@ public class FileRecruitmentController {
 
     @GetMapping("/file-recruitment")
     public String listFileRecruitment(@SessionAttribute("staffId") int staffId,
-            Model model) {
-        model.addAttribute("files", fileRecruitmentService.getFileRecruitments(staffId));
+            Model model, @RequestParam("page") Optional<Integer> p) {
+        Pageable pageable = PageRequest.of(p.orElse(0), 6);
+        model.addAttribute("files", fileRecruitmentService.getFileRecruitments(staffId, pageable));
         model.addAttribute("educations", educationService.getEducationByStaffId(staffId));
         model.addAttribute("staff", staffService.findById(staffId));
         return "employer/file-recruitment";
@@ -89,6 +94,16 @@ public class FileRecruitmentController {
         fileRecruitmentService.sendMail(userEntity.getEmail(), email, title, content);
         // sửa lại chỗ trả về, hơi bất ổn đó q nge
         return "redirect:/employer/mail/" + userEntity.getId();
+    }
+    
+    @PostMapping("/searchFileRecruiment_Name")
+    public String searchFileRecruiment_Name(Model model,
+            @ModelAttribute("name") String name,
+            @SessionAttribute("staffId") int staffId,
+            @RequestParam("page") Optional<Integer> p) {
+        Pageable pageable = PageRequest.of(p.orElse(0), 6);
+        model.addAttribute("files", fileRecruitmentService.searchFileRecruitmentByPost_Name(name,  pageable));
+        return "employer/file-recruitment";
     }
 
 }

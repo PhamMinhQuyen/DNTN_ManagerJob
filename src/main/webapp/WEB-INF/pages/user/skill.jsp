@@ -55,7 +55,7 @@
                                                 class="nav-link"
                                                 id="ex3-tab-2"
                                                 data-mdb-toggle="tab"
-                                                href="#ex3-tabs-2"
+                                                href="<c:url value="/user/candidate-job" />"
                                                 role="tab"
                                                 aria-controls="ex3-tabs-2"
                                                 aria-selected="false"
@@ -99,14 +99,18 @@
                                             >
                                         </li>
                                     </ul>
-                                    </br>
+                                    <c:if test="${message != null || message !=''}">
+                                        <div class="alert alert-${type}">
+                                            ${message}
+                                        </div>
+                                    </c:if>
+                                    <h5>KỸ NĂNG CHUYÊN MÔN</h5>
                                     <mvc:form action="${pageContext.request.contextPath}/user/result-update-skill"  method="post" modelAttribute="skill"
                                               id="update-skill-form">
                                         <c:if test="${action == 'update'}">
                                             <input type="text" class="form-control" name="id"
                                                    value="${skill.id}" hidden>    
                                         </c:if>
-                                        <h5>KỸ NĂNG CHUYÊN MÔN</h5>
                                         <div class="basic-form">
                                             <div class="card">
                                             </div>
@@ -159,7 +163,6 @@
                 rules: [
                     Validator.isSkill('#skill'),
                     Validator.isDescriptionSkill('#description'),
-                   
                 ]
             })
         </script>

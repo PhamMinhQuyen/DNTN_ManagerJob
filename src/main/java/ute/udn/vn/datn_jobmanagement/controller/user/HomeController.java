@@ -76,8 +76,9 @@ public class HomeController {
         Pageable pageable = PageRequest.of(p.orElse(0), 5);
         model.addAttribute("page", postService.searchByName(careersId,name, company, pageable));
         model.addAttribute("careerses", careersService.getCareerses());
-         model.addAttribute("employers", employerService.findAll());
+        model.addAttribute("employers", employerService.findAll());
         model.addAttribute("posts", postService.getPostsByPostDate());
+        
         return "/user/home";
     }
 }

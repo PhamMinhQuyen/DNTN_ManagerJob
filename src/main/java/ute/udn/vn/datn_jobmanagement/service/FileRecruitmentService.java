@@ -14,6 +14,8 @@ import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
@@ -34,8 +36,8 @@ public class FileRecruitmentService {
     @Autowired
     MailSender mailSender;
 
-    public List<FileRecruitmentEntity> getFileRecruitments(int StaffId) {
-        return fileRecruitmentRepository.getFileRecruitments(StaffId);
+    public Page<FileRecruitmentEntity> getFileRecruitments(int staffId, Pageable pageable) {
+        return fileRecruitmentRepository.findByPost_Staff_IdOrderByDateOfFilingDesc(staffId, pageable);
     }
 
     public FileRecruitmentEntity findById(int id) {
@@ -67,12 +69,20 @@ public class FileRecruitmentService {
         fileRecruitmentRepository.save(fileRecruitmentEntity);
     }
     
-    public List<FileRecruitmentEntity> findByCandidateId(int candidateId) {
-        return fileRecruitmentRepository.findByCandidateId(candidateId);
+    public List<FileRecruitmentEntity> findByCandidateIdAndOrderByDateOfFilingDesc(int candidateId) {
+        return fileRecruitmentRepository.findByCandidate_IdOrderByDateOfFilingDesc(candidateId);
     }
     
     public boolean deleteById(int id) {
         fileRecruitmentRepository.deleteById(id);
         return fileRecruitmentRepository.existsById(id);
+    }
+    
+    public FileRecruitmentEntity findByPostIdAndCandidateId(int postId, int Candidate) {
+        return fileRecruitmentRepository.findByPost_IdAndCandidate_Id(postId, Candidate);
+    }
+    
+    public Page<FileRecruitmentEntity> searchFileRecruitmentByPost_Name(String name, Pageable pageable) {
+        return fileRecruitmentRepository.findByPost_NameContaining(name, pageable);
     }
 }

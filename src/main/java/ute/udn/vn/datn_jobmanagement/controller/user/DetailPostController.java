@@ -50,10 +50,9 @@ public class DetailPostController {
             Model model) {
         model.addAttribute("post", postService.findById(postId));
         model.addAttribute("candidate", candidateService.findByCandidateId(candidateId));
+        model.addAttribute("fileRecruitment", fileRecruitmentService.findByPostIdAndCandidateId(postId, candidateId));
         return "user/detail-post-user";
     }
-    
-    
 
     @GetMapping("/detail-post/{postId}")
     public String detailPost(@PathVariable("postId") int postId,
@@ -65,8 +64,9 @@ public class DetailPostController {
     @PostMapping("/result-CV/{postId}")
     public String resultCV(MultipartFile[] files, HttpServletRequest request,
             @ModelAttribute("fileRecruitment") FileRecruitmentEntity fileRecruitmentEntity,
-            @SessionAttribute("candidate") CandidateEntity candidateEntity,
-            @PathVariable("postId") int postId) {
+            @SessionAttribute("candidateId") int candidateId,
+            @PathVariable("postId") int postId,
+            Model model) {
         
         if (files != null) {
           for (int i = 0; i < files.length; i++) {
@@ -98,9 +98,13 @@ public class DetailPostController {
         PostEntity postEntity = new PostEntity();
         postEntity.setId(postId);
         
+        CandidateEntity candidateEntity = new CandidateEntity();
+        candidateEntity.setId(candidateId);
+        
         fileRecruitmentEntity.setPost(postEntity);
         fileRecruitmentEntity.setCandidate(candidateEntity);
         fileRecruitmentService.save(fileRecruitmentEntity);
-        return "redirect:/user/home-candidate";
+        return "redirect:/user/detail-post-user/" + postId;
+        
     }
 }

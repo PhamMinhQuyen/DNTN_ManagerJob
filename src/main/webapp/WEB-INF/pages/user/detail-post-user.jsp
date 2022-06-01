@@ -37,16 +37,16 @@
                                                 <div class="inline-editor" style="float: right; margin-right: 380px;" >
                                                     <h4 style="color: #2980b9;">${post.name}</h4>
                                                     <h5>${post.staff.employer.name}</h5>
-                                                    <span>Địa Điểm Tuyển Dụng: ${post.staff.employer.address}</span>
+                                                    <span style="color: #000000;">Địa Điểm Tuyển Dụng: ${post.staff.employer.address}</span>
                                                     </br>
-                                                    <span>Ngành Nghề: ${post.staff.employer.career}</span>
-                                                     </br>
-                                                    <span>Ngày Đăng: <fmt:formatDate pattern="dd/MM/yyyy" value="${post.postDate}" /></span>
+                                                    <span style="color: #000000;">Ngành Nghề: ${post.staff.employer.career}</span>
+                                                    </br>
+                                                    <span style="color: #000000;">Ngày Đăng: <fmt:formatDate pattern="dd/MM/yyyy" value="${post.postDate}" /></span>
                                                 </div>
                                                 <div class="inline-editor">
                                                     <img src="<c:url value="/resources-home/img/company/"/>${post.staff.employer.logo}" width="120px;" height="140px;"
                                                          style="border: 2px solid #ced4da;" />
-                                                             
+
                                                     </table>
                                                 </div>
                                             </div>
@@ -57,7 +57,7 @@
                                         <div class="card">
                                             <div class="card-body">
                                                 <div class="inline-editor">
-                                                    <table>
+                                                    <table style="color: #000000;">
                                                         <tr>
                                                             <th>Kinh nghiệm:</th>
                                                             <td>${post.experience}</td>
@@ -86,19 +86,19 @@
                                     </br>
                                     <h6 style="border-bottom: 1px solid #0091ce;" >MÔ TẢ CÔNG VIỆC</h6>
                                     <div class="basic-form">
-                                         <p style="margin-left: 30px;"> ${post.description}</p>
+                                        <p style="margin-left: 30px; color: #000000;"> ${post.description}</p>
                                     </div>
-                                    <h6 style="border-bottom: 1px solid #0091ce;">QUYỀN LỢI ĐƯỢC HƯỞNG</h6>
+                                    <h6 style="border-bottom: 1px solid #0091ce;" >QUYỀN LỢI ĐƯỢC HƯỞNG</h6>
                                     <div class="basic-form">
-                                        <p style="margin-left: 30px;">${post.right} </p>
+                                        <p style="margin-left: 30px; color: #000000;">${post.right} </p>
                                     </div>
-                                    <h6 style="border-bottom: 1px solid #0091ce;">YÊU CẦU CÔNG VIỆC</h6>
+                                    <h6 style="border-bottom: 1px solid #0091ce; ">YÊU CẦU CÔNG VIỆC</h6>
                                     <div class="basic-form">
-                                        <p style="margin-left: 30px;">${post.request} </p>
+                                        <p style="margin-left: 30px; color: #000000;">${post.request} </p>
                                     </div>
                                     <h6 style="border-bottom: 1px solid #0091ce;"> THÔNG TIN LIÊN HỆ   </h6>
                                     <div class="basic-form">
-                                          <p style="margin-left: 30px;"> ${post.contactInfo} </p>
+                                        <p style="margin-left: 30px; color: #000000;"> ${post.contactInfo} </p>
                                     </div>
                                     </br>
                                     <div class="basic-form">
@@ -108,10 +108,10 @@
                                                     <div class="basic-form">
                                                         <h5>Thông tin của bạn</h5>
                                                         <mvc:form action="${pageContext.request.contextPath}/user/result-CV/${post.id}"  method="post" modelAttribute="fileRecruitment"
-                                                                  enctype="multipart/form-data">
+                                                                  enctype="multipart/form-data" id="detail-post-form">
                                                             <div class="form-group">
-                                                                <table>
-                                                                    <tr>
+                                                                <table style="color: #000000;">
+                                                                    <tr >
                                                                         <th>Email: </th>
                                                                         <td>${candidate.user.email}</td>
                                                                     </tr> 
@@ -120,12 +120,23 @@
                                                                         <td>${candidate.name}</td>
                                                                     </tr> 
                                                                 </table>
-                                                                <label class="form" style="font-weight: bold;">Thêm CV của bạn</label>
-                                                                <input class="form-control form-upload" name="files" type="file"> 
+                                                                <label for="image" class="form" style="font-weight: bold; color: #000000;">Thêm CV của bạn</label>
+                                                                <input class="form-control form-upload" name="files" type="file" id="image"> 
+                                                                <label class="form-message" style="color: red; "></label>
                                                             </div>
-                                                            <div class="form-group">
-                                                                <button type="submit" class="btn btn-success">Gửi</button>
-                                                            </div>
+                                                            <c:if test="${fileRecruitment != null}">
+                                                                <div class="form-group">
+                                                                    <input type="button" class="btn btn-info" value="Đã ứng tuyển" 
+                                                                           onclick="location.href = '#'" />
+                                                                </div>
+                                                            </c:if>
+                                                            <c:if test="${fileRecruitment == null}">
+                                                                <div class="form-group">
+                                                                    <button type="submit" class="btn btn-success">Gửi</button>
+                                                                    <input type="button" class="btn btn-info" value="Hủy" 
+                                                                           onclick="location.href = '<c:url value="/user/detail-post-user/${post.id}"/>'" />
+                                                                </div>
+                                                            </c:if>
                                                         </mvc:form>
                                                     </div>
                                                 </div>
@@ -135,12 +146,22 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
+                    </br>
+                    <jsp:include page="../include/employer/footer.jsp"/>  
                 </div>
-                </br>
-                <jsp:include page="../include/employer/footer.jsp"/>  
-            </div>
-            <jsp:include page="../include/user-employer-home/js-page.jsp"/>
-    </body>
-</html>
+                <jsp:include page="../include/user-employer-home/js-page.jsp"/>
+
+                <script src="${pageContext.request.contextPath}/resources-home/js/validation.js"></script>
+                <script>
+                                                                                   // gọi hàm
+                                                                                   Validator({
+                                                                                       form: '#detail-post-form',
+                                                                                       rules: [
+                                                                                           Validator.isCV('#image'),
+                                                                                       ]
+                                                                                   })
+                </script>
+                </body>
+                </html>

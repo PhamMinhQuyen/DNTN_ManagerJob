@@ -7,6 +7,8 @@ package ute.udn.vn.datn_jobmanagement.repository;
 
 import java.util.List;
 import java.util.Optional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -19,14 +21,7 @@ import ute.udn.vn.datn_jobmanagement.entities.FileRecruitmentEntity;
 @Repository
 public interface FileRecruitmentRepository extends CrudRepository<FileRecruitmentEntity, Integer> {
 
-    @Query(nativeQuery = true, value = "SELECT *\n"
-            + "FROM baidang AS bd\n"
-            + "JOIN nhanvien AS nv\n"
-            + "ON bd.MaNV = nv.MaNV\n"
-            + "JOIN hosoungtuyen AS hsut\n"
-            + "ON bd.MaBD = hsut.MaBD\n"
-            + "WHERE nv.MaNV = ?1")
-    public List<FileRecruitmentEntity> getFileRecruitments(int staffId);
+    public Page<FileRecruitmentEntity> findByPost_Staff_IdOrderByDateOfFilingDesc(int staffId, Pageable pageable);
 
     @Query(nativeQuery = true, value = "SELECT * \n"
             + "FROM hosoungtuyen AS hsut\n"
@@ -35,8 +30,9 @@ public interface FileRecruitmentRepository extends CrudRepository<FileRecruitmen
             + "WHERE hsut.MaHS = ?1")
     public Optional<FileRecruitmentEntity> findByProfileCodeId(int id);
 
-    @Query(nativeQuery = true, value = "SELECT * \n"
-            + "FROM hosoungtuyen as hsut\n"
-            + "WHERE hsut.MaUV = ?1")
-    public List<FileRecruitmentEntity> findByCandidateId(int candidateId);
+    public List<FileRecruitmentEntity> findByCandidate_IdOrderByDateOfFilingDesc(int candidateId);
+    
+    public FileRecruitmentEntity findByPost_IdAndCandidate_Id(int postId, int candidateId);
+    
+    public Page<FileRecruitmentEntity> findByPost_NameContaining(String name, Pageable pageable);
 }

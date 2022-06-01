@@ -36,16 +36,22 @@ public class AccountController {
 
     @GetMapping("/account")
     public String showAccount(Model model,
+            @RequestParam(value = "message", required = false) String message, 
+            @RequestParam(value = "type", required = false) String type, 
             @SessionAttribute("staffId") int staffId) {
         model.addAttribute("staff", staffService.findById(staffId));
         model.addAttribute("genders", GenderEnum.values());
         model.addAttribute("action", "update");
+        model.addAttribute("message", message);
+        model.addAttribute("type", type);
         return "employer/account";
     }
 
     @PostMapping("/update-account")
     public String updateAccount(Model model, @ModelAttribute("staff") StaffEntity staffEntity) {
         staffService.save(staffEntity);
+        model.addAttribute("message", "Cập nhật thông tin tài khoản thành công !");
+        model.addAttribute("type", "success");
         return "redirect:/employer/account";
     }
 

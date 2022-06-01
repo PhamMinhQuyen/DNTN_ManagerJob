@@ -27,7 +27,7 @@
             <nav id="sidebar">
                 <div class="avatar">
                     <div class="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                        <img src="<c:url value="/resources/img/user/"/>${candidate.user.image}" width="100px" height="100px;"  style="margin-left: 65px;
+                        <img src="<c:url value="/resources/img/user/"/>${candidate.image}" width="100px" height="100px;"  style="margin-left: 65px;
                              margin-top: 10px; margin-bottom:10px;"/>
                     </div>
                 </div>
@@ -46,27 +46,26 @@
                                         <table class="table table-striped">
                                             <thead>
                                                 <tr>
+                                                    <th>STT</th>
                                                     <th>Logo</th>
                                                     <th>Tên công ty</th>
                                                     <th>Tên công việc</th>
                                                     <th>Lương</th>
                                                     <th>Ngày nộp</th>
-                                                    <th>Thao tác</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <c:if test="${fileRecruitments != null && fn:length(fileRecruitments) > 0}">
-                                                    <c:forEach items="${fileRecruitments}" var="fileRecruitment">
+                                                    <c:forEach items="${fileRecruitments}" var="fileRecruitment" varStatus="status">
                                                         <tr>
+                                                            <td>${status.count}</td>
                                                             <td><img src="<c:url value="/resources-home/img/company/"/>${fileRecruitment.post.staff.employer.logo}" width="50px;" height="40px;" /></td>
                                                             <td>${fileRecruitment.post.staff.employer.name}</td>
-                                                            <td><a href="<c:url value="/user/detail-post/${fileRecruitment.post.id}" />">${fileRecruitment.post.name}</a></td>
+                                                            <td><a href="<c:url value="/user/detail-post-user/${fileRecruitment.post.id}" />">${fileRecruitment.post.name}</a></td>
                                                             <td>${fileRecruitment.post.wage}</td>
                                                             <td>
                                                                 <fmt:formatDate pattern="dd/MM/yyyy" value="${fileRecruitment.dateOfFiling}" />
                                                             </td>
-                                                            <td><button class="btn btn-danger"
-                                                                        onclick="location.href = '<c:url value="/user/delete-fileRecruitment/${fileRecruitment.id}"/>'">Xóa</button></th>
                                                         </tr>
                                                     </c:forEach>
                                                 </c:if>

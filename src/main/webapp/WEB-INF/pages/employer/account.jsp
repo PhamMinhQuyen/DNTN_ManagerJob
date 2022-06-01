@@ -38,7 +38,11 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h3>THÔNG TIN TÀI KHOẢN</h3>
-                                    </br>
+                                    <c:if test="${message != null || message !=''}">
+                                        <div class="alert alert-${type}">
+                                            ${message}
+                                        </div>
+                                    </c:if>
                                     <div class="basic-form">
                                         <mvc:form action="${pageContext.request.contextPath}/employer/update-account"  method="post" modelAttribute="staff"
                                                   id="account-form">

@@ -16,7 +16,7 @@
                                 <ul>
                                     <li><a href="<c:url value="/user/information-user"/>">Quản lý hồ sơ</a></li>
                                     <li><a href="<c:url value="/user/file-recruitment"/>">Quản lý việc làm</a></li>
-                                    <li><a href="<c:url value="/employer/change-password"/>">Đổi mật khẩu</a></li>
+                                    <li><a href="<c:url value="/user/change-password-user"/>">Đổi mật khẩu</a></li>
                                     <li><a href="<c:url value="/user/log-out"/>">Đăng xuất</a></li>
                                 </ul>
                             </li>

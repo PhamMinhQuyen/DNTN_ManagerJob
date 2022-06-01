@@ -55,7 +55,7 @@
                                                 class="nav-link"
                                                 id="ex3-tab-2"
                                                 data-mdb-toggle="tab"
-                                                href="#ex3-tabs-2"
+                                                href="<c:url value="/user/candidate-job" />"
                                                 role="tab"
                                                 aria-controls="ex3-tabs-2"
                                                 aria-selected="false"
@@ -99,14 +99,18 @@
                                             >
                                         </li>
                                     </ul>
-                                    </br>
+                                    <c:if test="${message != null || message !=''}">
+                                        <div class="alert alert-${type}">
+                                            ${message}
+                                        </div>
+                                    </c:if>
+                                    <h5>KINH NGHIỆM LÀM VIỆC</h5>
                                     <mvc:form action="${pageContext.request.contextPath}/user/result-update-experience"  method="post" modelAttribute="experience"
                                               id="update-experience-form"   >
                                         <c:if test="${action == 'update'}">
                                             <input type="text" class="form-control" name="id"
                                                    value="${experience.id}" hidden>    
                                         </c:if>
-                                        <h5>KINH NGHIỆM LÀM VIỆC</h5>
                                         <div class="basic-form">
                                             <div class="card">
                                             </div>
@@ -151,7 +155,7 @@
                                                             <c:if test="${experience.position == rank.name}">
                                                                 <option selected>${rank.name}</option>
                                                             </c:if>
-                                                           <c:if test="${experience.position != rank.name}">
+                                                            <c:if test="${experience.position != rank.name}">
                                                                 <option >${rank.name}</option>
                                                             </c:if>
                                                         </c:forEach>
@@ -179,9 +183,9 @@
                                                 <div class="col">
                                                     <label class="form" for="endTime">Thời gian kết thúc</label>
                                                     <span style=color:red;>*</span>
-                                                    <input onchange = "handleChange()" type="date" class="form-control" name="endTime" value="${experience.endTime}"
+                                                    <input type="date" class="form-control" name="endTime"  value="${experience.endTime}"
                                                            id="endTime"> 
-                                                    <label id="validationEndTime" class="form-message" style="color: red; "></label> 
+                                                    <label  class="form-message" style="color: red; "></label> 
                                                 </div>
                                             </div>
 
@@ -201,7 +205,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-info">CẬP NHẬT</button>
+                                        <button type="submit" class="btn btn-info">CẬP NHẬT</button> 
                                     </mvc:form>
                                 </div>
                             </div>
@@ -209,14 +213,13 @@
                     </div>
                 </div>
             </div>
-        </div>
-
+        </div>  
+        
         <jsp:include page="../include/employer/footer.jsp"/>
         <jsp:include page="../include/user-employer-home/js-page.jsp"/>
 
         <script src="${pageContext.request.contextPath}/resources-home/js/validation.js"></script>
         <script>
-            // gọi hàm
             Validator({
                 form: '#update-experience-form',
                 rules: [
@@ -225,25 +228,11 @@
                     Validator.isNumberYear('#numberYear'),
                     Validator.isPosition('#position'),
                     Validator.isStartTime('#startTime'),
-                    Validator.isStartTime('#endTime'),
+                    Validator.isEndTime('#endTime'),
                     Validator.isDescription('#jobDescription'),
-                    
                 ]
             });
-            
-           const getbyId = (id) => document.querySelector(id);
-           const check = () => {
-              return getbyId('#startTime').value < getbyId('#endTime').value;
-           }
-           
-           const handleChange = () => {
-               if (!check()) {
-                   getbyId('#validationEndTime').textContent = 'Thời gian kết thúc lớn hơn thời gian bắt đầu'
-               } else {
-                   getbyId('#validationEndTime').textContent = ''
-               }
-           }
-           
+
         </script>
     </body>
 </html>

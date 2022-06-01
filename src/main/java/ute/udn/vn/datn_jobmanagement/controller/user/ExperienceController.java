@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import ute.udn.vn.datn_jobmanagement.entities.ExperienceEntity;
 import ute.udn.vn.datn_jobmanagement.service.CandidateService;
@@ -36,17 +37,24 @@ public class ExperienceController {
     private RankService rankService;
     
     @GetMapping("/experience")
-    public String updateExperience(Model model, @SessionAttribute("candidateId") int candidateId) {
+    public String updateExperience(Model model, @SessionAttribute("candidateId") int candidateId,
+            @RequestParam(value = "type", required = false) String type,
+            @RequestParam(value = "message", required = false) String message) {
         model.addAttribute("candidate", candidateService.findByCandidateId(candidateId));
         model.addAttribute("ranks", rankService.getRanks());
         model.addAttribute("action", "update");
         model.addAttribute("experience", experienceService.findByCandidateId(candidateId));
+        model.addAttribute("type", type);
+        model.addAttribute("message", message);
         return "user/experience";
     }
     
     @PostMapping("/result-update-experience")
-    public String resultUpdateExperience(@ModelAttribute("experience") ExperienceEntity experienceEntity) {
+    public String resultUpdateExperience(@ModelAttribute("experience") ExperienceEntity experienceEntity,
+            Model model) {
         experienceService.save(experienceEntity);
+        model.addAttribute("message", "Cập Nhật Kinh Nghiệm Làm Việc Thành Công");
+        model.addAttribute("type", "success");
         return "redirect:/user/experience";
     }
 }

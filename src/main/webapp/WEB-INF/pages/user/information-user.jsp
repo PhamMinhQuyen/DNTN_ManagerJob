@@ -9,7 +9,7 @@
         <meta name="author" content="codepixer">
         <!-- Meta Keyword -->
         <meta name="keywords" content="">
-        <meta charset="UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Thông tin cá nhân</title>
         <jsp:include page="../include/employer/css-page.jsp"/>
 
@@ -55,7 +55,7 @@
                                                 class="nav-link"
                                                 id="ex3-tab-2"
                                                 data-mdb-toggle="tab"
-                                                href="#ex3-tabs-2"
+                                                href="<c:url value="/user/candidate-job" />"
                                                 role="tab"
                                                 aria-controls="ex3-tabs-2"
                                                 aria-selected="false"
@@ -99,7 +99,12 @@
                                             >
                                         </li>
                                     </ul>
-                                    </br>
+                                    <c:if test="${message != null || message !=''}">
+                                        <div class="alert alert-${type}">
+                                            ${message}
+                                        </div>
+                                    </c:if>
+                                    <h5>THÔNG TIN CÁ NHÂN</h5>
                                     <mvc:form action="${pageContext.request.contextPath}/user/result-update-information-user"  method="post" modelAttribute="candidate"
                                               enctype="multipart/form-data" id="information-user-form">
                                         <c:if test="${action == 'update'}">
@@ -108,14 +113,7 @@
 
                                             <input type="text" class="form-control" name="user.id"
                                                    value="${candidate.user.id}" hidden>
-
                                         </c:if>
-                                             <c:if test="${message != null || message !=''}">
-                                            <div class="alert alert-${type}">
-                                                ${message}
-                                            </div>
-                                        </c:if>
-                                        <h5>THÔNG TIN CÁ NHÂN</h5>
                                         <div class="basic-form">
                                             <div class="card">
                                                 <div class="card-body">
@@ -187,7 +185,7 @@
                                                     <label class="form" for="birthday">Ngày sinh</label>
                                                     <input type="date" class="form-control" value="${candidate.birthdate}" name="birthdate"
                                                            id="birthday"> 
-                                                    <label class="form-message" style="color: red; "></label> 
+                                                    <label  class="form-message" style="color: red; "></label> 
                                                 </div>
                                             </div>
 
@@ -221,15 +219,19 @@
 
                                             <div class="row">
                                                 <div class="col">
-                                                    <input type="text" class="form-control"  value="${candidate.user.password}" name="passwordUser" hidden
+                                                    <input type="text" class="form-control"  value="${candidate.user.password}" name="candidate.user.password" hidden
                                                            > 
                                                 </div>
                                                 <div class="col">
-                                                    <input type="text" class="form-control"  value="${candidate.user.email}" name="emailUser" hidden
+                                                    <input type="text" class="form-control"  value="${candidate.user.email}" name="candidate.user.email" hidden
                                                            > 
                                                 </div>
                                                 <div class="col">
                                                     <input type="text" class="form-control"  value="${candidate.image}" name="image" hidden
+                                                           > 
+                                                </div>
+                                                <div class="col">
+                                                    <input type="text" class="form-control"  value="${candidate.user.status}" name="candidate.user.status" hidden
                                                            > 
                                                 </div>
                                             </div>
@@ -263,7 +265,7 @@
                     Validator.isCCCD('#CCCD'),
                     Validator.isImage('#image'),
                 ]
-            })
+            });
         </script>
     </body>
 </html>

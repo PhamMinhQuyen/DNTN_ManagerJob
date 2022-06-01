@@ -37,11 +37,17 @@
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">
+                                    <h3>THÔNG TIN CÔNG TY</h3>
                                     <mvc:form action="${pageContext.request.contextPath}/employer/result-information-company"  method="post" modelAttribute="employer"
                                               enctype="multipart/form-data" id="information-company-form">
                                         <c:if test="${action == 'update'}">
                                             <input type="text" class="form-control" name="id"
                                                    value="${employer.id}" hidden>    
+                                        </c:if>
+                                        <c:if test="${message != null || message !=''}">
+                                            <div class="alert alert-${type}">
+                                                ${message}
+                                            </div>
                                         </c:if>
                                         <h6>ẢNH ĐẠI DIỆN CÔNG TY</h6>
                                         <div class="basic-form">

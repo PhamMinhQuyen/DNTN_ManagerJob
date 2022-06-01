@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 import ute.udn.vn.datn_jobmanagement.entities.EmployerEntity;
@@ -52,18 +53,23 @@ public class EmployerController {
     private PostService postService;
     
     @GetMapping("/information-company")
-    public String informationCompany(Model model, @SessionAttribute("staffId") int staffId) {
+    public String informationCompany(Model model, @SessionAttribute("staffId") int staffId,
+            @RequestParam(name = "message", required = false) String message,
+            @RequestParam(name = "type", required = false) String type) {
         model.addAttribute("careerses", careersService.getCareerses());
         model.addAttribute("scales", scaleService.getScales());
         model.addAttribute("employer", employerService.getEmployerByStaffId(staffId));
         model.addAttribute("staff", staffService.findById(staffId));
         model.addAttribute("action", "update");
+        model.addAttribute("message", message);
+        model.addAttribute("type", type);
     return "employer/information-company";
     }
 
     @PostMapping("/result-information-company")
-    public String updateInformationCompany(@ModelAttribute("employer") EmployerEntity employerEntity,  MultipartFile[] files,
-           HttpServletRequest request
+    public String updateInformationCompany(@ModelAttribute("employer") EmployerEntity employerEntity, 
+           MultipartFile[] files,
+           HttpServletRequest request, Model model
           ) {
         if (files != null) {
           for (int i = 0; i < files.length; i++) {
@@ -92,6 +98,8 @@ public class EmployerController {
         }
         }
         employerService.save(employerEntity);
+        model.addAttribute("message", "Cập nhật thông tin công ty thành công !");
+        model.addAttribute("type", "success");
         return "redirect:/employer/information-company";
     }
     

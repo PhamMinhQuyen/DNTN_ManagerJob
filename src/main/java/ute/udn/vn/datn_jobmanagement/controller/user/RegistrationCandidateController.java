@@ -32,6 +32,7 @@ public class RegistrationCandidateController {
     @Autowired
     private UserService userService;
     
+    
     @GetMapping("/registration-candidate")
     public String registrationCandidate() {
         return "user/registration-candidate";

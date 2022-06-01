@@ -18,7 +18,7 @@ import ute.udn.vn.datn_jobmanagement.entities.UserEntity;
 @Repository
 public interface UserRepository extends CrudRepository<UserEntity, Integer> {
 
-    @Query("SELECT u FROM UserEntity u WHERE u.email = ?1 AND u.password = ?2 AND u.role.id = 2")
+    @Query("SELECT u FROM UserEntity u WHERE u.email = ?1 AND u.password = ?2 AND u.role.id = 2 AND u.status = 'ACTIVED'")
     public UserEntity findStaffByEmailAndPassword(String email, String password);
     
    @Query("SELECT u FROM UserEntity u WHERE u.email = ?1 AND u.password = ?2 AND u.role.id = 3")

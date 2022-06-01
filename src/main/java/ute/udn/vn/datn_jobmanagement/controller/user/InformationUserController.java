@@ -11,7 +11,6 @@ import java.nio.file.Paths;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -50,7 +49,6 @@ public class InformationUserController {
         model.addAttribute("genders", GenderEnum.values());
         model.addAttribute("action", "update");
         model.addAttribute("type", type);
-        message = MediaType.APPLICATION_JSON_VALUE + "; charset=utf-8";
         model.addAttribute("message", message);
         return "user/information-user";
     }
@@ -59,9 +57,9 @@ public class InformationUserController {
     public String resultUpdateInformationUser(@ModelAttribute("candidate") CandidateEntity candidateEntity,
             MultipartFile[] files,
             HttpServletRequest request,
-            @ModelAttribute("passwordUser") String password,
-            @ModelAttribute("emailUser") String email
+            Model model
     ) {
+
         if (files != null) {
             for (int i = 0; i < files.length; i++) {
                 MultipartFile file = files[i];
@@ -82,18 +80,15 @@ public class InformationUserController {
                     if (name == null) {
                         name = "new-image" + name;
                     }
-                    
+
                     RoleEntity roleEntity = new RoleEntity();
                     roleEntity.setId(3);
 
                     UserEntity userEntity = new UserEntity();
                     userEntity.setId(candidateEntity.getUser().getId());
                     userEntity.setRole(roleEntity);
-                    userEntity.setEmail(email);
-                    userEntity.setPassword(password);
-                    
                     candidateEntity.setImage(name);
-                    
+
                     userService.save(userEntity);
 
                 } catch (Exception e) {
@@ -102,6 +97,8 @@ public class InformationUserController {
             }
         }
         candidateService.save(candidateEntity);
-        return "redirect:/user/information-user?type=success&message=Thay đổi thông tin cá nhân thành công";  
+        model.addAttribute("message", "Cập nhật thông tin cá nhân thành công !");
+        model.addAttribute("type", "success");
+        return "redirect:/user/information-user";
     }
 }

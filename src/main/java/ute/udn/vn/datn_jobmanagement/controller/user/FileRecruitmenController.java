@@ -34,13 +34,7 @@ public class FileRecruitmenController {
     public String jobManagement(@SessionAttribute("candidateId") int candidateId,
             Model model) {
         model.addAttribute("candidate", candidateService.findByCandidateId(candidateId));
-        model.addAttribute("fileRecruitments", fileRecruitmentService.findByCandidateId(candidateId));
+        model.addAttribute("fileRecruitments", fileRecruitmentService.findByCandidateIdAndOrderByDateOfFilingDesc(candidateId));
         return "user/file-recruitment";
     }
-    
-//    @GetMapping("/delete-fileRecruitment/{fileRecruitmentId}")
-//    public String deleteFileRecruitment(@PathVariable("fileRecruitmentId") int fileRecruitmentId) {
-//        fileRecruitmentService.deleteById(fileRecruitmentId);
-//        return "redirect:/user/file-recruitment";
-//    }
 }

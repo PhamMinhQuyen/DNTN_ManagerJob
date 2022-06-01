@@ -2,6 +2,7 @@
 <%@taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="mvc" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,11 +24,11 @@
             <div class="overlay overlay-bg"></div>
         </section>
         <div class="wrapper d-flex align-items-stretch">
-           <nav id="sidebar">
+            <nav id="sidebar">
                 <div class="avatar">
                     <div class="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                    <img src="<c:url value="/resources-home/img/company/"/>${staff.employer.logo}" width="100px" height="100px;"  style="margin-left: 65px;
-                          margin-top: 10px; margin-bottom:10px;"/>
+                        <img src="<c:url value="/resources-home/img/company/"/>${staff.employer.logo}" width="100px" height="100px;"  style="margin-left: 65px;
+                             margin-top: 10px; margin-bottom:10px;"/>
                     </div>
                 </div>
                 <jsp:include page="../include/employer/sidebar.jsp"/>
@@ -45,10 +46,10 @@
 
                                         </div>
                                         <div class="col-12 col-lg-6">
-                                            <form action="${pageContext.request.contextPath}/search" method="post"
+                                            <form action="${pageContext.request.contextPath}/employer/searchFileRecruiment_Name" method="post"
                                                   class="form-inline float-right">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" name="strSearch" />
+                                                    <input type="text" class="form-control" name="name" />
                                                     <input type="submit" class="btn btn-secondary" value="Tìm kiếm" />
                                                 </div>
                                             </form>
@@ -69,17 +70,18 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <c:if test="${files != null && fn:length(files) > 0}">
-                                                    <c:forEach items="${files}" var="file" >
+                                                    <c:forEach items="${files.content}" var="file" varStatus="status">
                                                         <tr>
-                                                            <th>làm sau</th>
-                                                            <th>${file.post.name}</th>
-                                                            <th>${file.candidate.name}</th>
-                                                            <th><c:forEach items="${file.candidate.educations}" var="education">
-                                                                    ${education.school}, 
-                                                                </c:forEach></th>
-                                                            <th>${file.candidate.phone}</th>
-                                                            <th>${file.dateOfFiling}</th>
+                                                            <td>${status.count}</td>
+                                                            <td>${file.post.name}</td>
+                                                            <td>${file.candidate.name}</td>
+                                                            <td><c:forEach items="${file.candidate.educations}" var="education">
+                                                                    ${education.school}
+                                                                </c:forEach></td>
+                                                            <td>${file.candidate.phone}</td>
+                                                            <td>
+                                                                <fmt:formatDate pattern="dd/MM/yyyy" value="${file.dateOfFiling}" />
+                                                            </td>
                                                             <td>
                                                                 <span>
                                                                     <a href="<c:url value="/employer/detail-file-recruitment/${file.id}" />">Xem chi tiết</a>
@@ -87,12 +89,23 @@
                                                             </td>
                                                         </tr>
                                                     </c:forEach>
-                                                </c:if>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
+                                                  </br>
+                            <nav aria-label="Page navigation example" style="margin-left: 380px;">
+                                <ul class="pagination">
+                                    <li class="page-item"><a class="page-link" href="/DATN_JobManagement/employer/file-recruitment/?page=0">First</a></li>
+                                    <li class="page-item"><a class="page-link" href="/DATN_JobManagement/employer/file-recruitment/?page=${page.number - 1}"><<</a></li>
+                                    <li class="page-item"><a class="page-link" href="/DATN_JobManagement/employer/file-recruitment/?page=0">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="/DATN_JobManagement/employer/file-recruitment/?page=1">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="/DATN_JobManagement/employer/file-recruitment/?page=2">3</a></li>
+                                    <li class="page-item"><a class="page-link" href="/DATN_JobManagement/employer/file-recruitment/?page=${page.number + 1}">>></a></li>
+                                    <li class="page-item"><a class="page-link" href="/DATN_JobManagement/employer/file-recruitment/?page=${page.totalPages - 1}">Last</a></li>
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                 </div>
